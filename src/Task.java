@@ -30,7 +30,7 @@ public class Task {
         this.name = name;
     }
 
-    public void done() {
+    public void markAsDone() {
         this.status = true;
     }
 }
