@@ -3,8 +3,8 @@ import java.util.Date;
 public class Task {
     private String name;
     private  String project;
-    private boolean isDone;
-    private Date status;
+    private boolean status;
+    private Date dueDate;
 
     public String getName() {
         return name;
@@ -15,19 +15,11 @@ public class Task {
     }
 
     public Date getDueDate() {
-        return status;
+        return dueDate;
     }
 
     public void setDueDate(Date dueDate) {
-        this.status = dueDate;
-    }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
+        this.dueDate = dueDate;
     }
 
     public void setProject(String project) {
@@ -36,5 +28,9 @@ public class Task {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void done() {
+        this.status = true;
     }
 }
