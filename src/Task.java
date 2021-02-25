@@ -6,6 +6,10 @@ public class Task {
     private boolean status;
     private Date dueDate;
 
+    public Task() {
+        this.status = false;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,4 +37,9 @@ public class Task {
     public void markAsDone() {
         this.status = true;
     }
+
+    public String toString() {
+        return "Task name: " + name + ", Project: " + project + " , Due Date: " + dueDate + ", Status: " + (status ? "Task is completed" : "Task is not completed");
+    }
+
 }
