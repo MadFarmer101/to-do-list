@@ -1,10 +1,10 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Task {
     private String name;
     private  String project;
     private boolean status;
-    private Date dueDate;
+    private LocalDate dueDate;
 
     public Task() {
         this.status = false;
@@ -18,7 +18,7 @@ public class Task {
         return project;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
@@ -26,7 +26,7 @@ public class Task {
         return status;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
