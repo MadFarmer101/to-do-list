@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static  org.junit.jupiter.api.Assertions.*;
+import java.time.*;
 
 public class TaskTest {
     @Test
@@ -27,5 +28,13 @@ public class TaskTest {
         Task task = new Task();
         task.markAsDone();
         assertTrue(task.status());
+    }
+
+    @Test
+    void taskHasACorrectDueDate() {
+        Task task = new Task();
+        LocalDate deadline = LocalDate.parse("2021-03-03");
+        task.setDueDate(deadline);
+        assertTrue(task.getDueDate().toString().equals("2021-03-03"));
     }
 }
