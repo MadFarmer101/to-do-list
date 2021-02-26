@@ -1,0 +1,74 @@
+package toDoList;
+
+import java.time.*;
+
+public class Task {
+    private String name;
+    private String project;
+    private boolean status;
+    private LocalDate dueDate;
+
+    public Task() {
+        this.status = false;
+    }
+
+    /**
+     * @return task's name.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return task's project.
+     */
+    public String getProject() {
+        return project;
+    }
+
+    /**
+     * @return task's dueDate.
+     */
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    /**
+     * @return task's status.
+     */
+    public boolean status() {
+        return status;
+    }
+
+    /**
+     * Setts a task's dueDate.
+     */
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    /**
+     * Setts a task's project.
+     */
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    /**
+     * Setts a task's name.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Marks the task as done by setting it's status to true.
+     */
+    public void markAsDone() {
+        this.status = true;
+    }
+
+    public String toString() {
+        return "\nTASK: " + name + "\nPROJECT: " + project + "\nDUE DATE: " + dueDate + "\nSTATUS: " + (status ? "Task is completed" : "Task is not completed");
+    }
+}
