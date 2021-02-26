@@ -2,7 +2,7 @@ import java.time.*;
 
 public class Task {
     private String name;
-    private  String project;
+    private String project;
     private boolean status;
     private LocalDate dueDate;
 
@@ -43,7 +43,6 @@ public class Task {
     }
 
     public String toString() {
-        return "Task name: " + name + ", Project: " + project + " , Due Date: " + dueDate + ", Status: " + (status ? "Task is completed" : "Task is not completed");
+        return "\nTASK: " + name + "\nPROJECT: " + project + "\nDUE DATE: " + dueDate + "\nSTATUS: " + (status ? "Task is completed" : "Task is not completed");
     }
-
 }
