@@ -15,4 +15,17 @@ public class TaskTest {
         task.setProject("project1");
         assertTrue(task.getProject().equals("project1"));
     }
+
+    @Test
+    void statusIsFalseWhenTaskIsCreated() {
+        Task task = new Task();
+        assertFalse(task.status());
+    }
+
+    @Test
+    void statusIsTrueWhenTaskIsMarkedAsDone() {
+        Task task = new Task();
+        task.markAsDone();
+        assertTrue(task.status());
+    }
 }

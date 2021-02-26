@@ -22,6 +22,10 @@ public class Task {
         return dueDate;
     }
 
+    public boolean status() {
+        return status;
+    }
+
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
