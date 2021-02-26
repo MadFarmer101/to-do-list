@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.*;
 
 public class TaskTest {
-    
+
     @Test
     void taskHasACorrectName() {
         Task task = new Task();
