@@ -21,6 +21,8 @@ public class ToDoList {
         System.out.println("Date must be entered in a format: YYYY-MM-DD");
         task.setDueDate(LocalDate.parse(userInput.nextLine()));
 
+        toDoList.add(task);
+        System.out.println("Task is successfully added");
     }
 
 }
