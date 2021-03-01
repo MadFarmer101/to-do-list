@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ToDoList {
-    ArrayList<Task> toDoList = new ArrayList<>();
+    private ArrayList<Task> toDoList = new ArrayList<>();
+
+    public ArrayList<Task> getToDoList() {
+        return toDoList;
+    }
 
     public void addTask() {
         Scanner userInput = new Scanner(System.in);

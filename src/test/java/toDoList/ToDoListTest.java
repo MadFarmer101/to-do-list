@@ -1,6 +1,6 @@
 package toDoList;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -11,12 +11,15 @@ public class ToDoListTest {
 
     @Test
     void successfullyAddTaskToTheToDOList() {
-        ToDoList toDoList = new ToDoList();
-        toDoList.addTask();
-        String name = "task1";
-        InputStream in = new ByteArrayInputStream(name.getBytes());
-        System.setIn(in);
 
-        assertFalse(toDoList.toDoList.isEmpty());
+        ToDoList toDoLy = new ToDoList();
+        String input = "task1\nproject1\n2021-05-03";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+
+        System.setIn(inputStream);
+
+        toDoLy.addTask();
+
+        assertFalse(toDoLy.getToDoList().isEmpty());
     }
 }
