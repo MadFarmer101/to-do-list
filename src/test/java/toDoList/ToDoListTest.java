@@ -20,6 +20,6 @@ public class ToDoListTest {
 
         toDoLy.addTask();
 
-        assertFalse(toDoLy.getToDoList().isEmpty());
+        assertEquals(1, toDoLy.getToDoList().size());
     }
 }
