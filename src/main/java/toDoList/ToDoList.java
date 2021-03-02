@@ -28,10 +28,9 @@ public class ToDoList {
 
     public boolean removeTask() {
         Scanner scanner = new Scanner(System.in);
-
         String userInput = scanner.nextLine();
 
-        System.out.println("Please enter a name of a task you want to delete: ");
+        System.out.println("Please enter a name of a task you want to delete:");
 
         for (Task task : toDoList) {
             if (task.getName().equalsIgnoreCase(userInput)) {
@@ -40,7 +39,7 @@ public class ToDoList {
                 return true;
             }
         }
-        System.out.println("There is no task with that name on the list");
+        System.err.println("There is no task with that name on the list.");
         return false;
     }
 
