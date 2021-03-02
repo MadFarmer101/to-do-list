@@ -44,4 +44,15 @@ public class ToDoListTest {
     public void checksForCorrectTaskDueDate() {
         assertEquals("2021-04-15", toDoLy.getToDoList().get(1).getDueDate().toString());
     }
+
+    @Test
+    public void userSuccessfullyRemovesTaskByName() {
+        String input = "task2";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+
+        System.setIn(inputStream);
+
+        toDoLy.removeTask();
+        assertEquals(1, toDoLy.getToDoList().size());
+    }
 }

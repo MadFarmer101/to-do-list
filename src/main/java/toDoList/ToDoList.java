@@ -1,7 +1,6 @@
 package toDoList;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class ToDoList {
@@ -28,19 +27,20 @@ public class ToDoList {
     }
 
     public boolean removeTask() {
-        Iterator<Task> iterator = toDoList.iterator();
-        Scanner userInput = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+
+        String userInput = scanner.nextLine();
 
         System.out.println("Please enter a name of a task you want to delete: ");
-        while (iterator.hasNext()) {
-            if (userInput.nextLine().equalsIgnoreCase(iterator.next().getName())) {
-                toDoList.remove(iterator.next());
-                System.out.println("Task has been successfully deleted");
+
+        for (Task task : toDoList) {
+            if (task.getName().equalsIgnoreCase(userInput)) {
+                toDoList.remove(task);
+                System.out.println("Task has been successfully removed");
                 return true;
-            } else {
-                System.out.println("You don't have a task with that name");
             }
         }
+        System.out.println("There is no task with that name on the list");
         return false;
     }
 
