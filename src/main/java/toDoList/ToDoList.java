@@ -41,6 +41,7 @@ public class ToDoList {
                 System.out.println("You don't have a task with that name");
             }
         }
+        return false;
     }
 
 }
