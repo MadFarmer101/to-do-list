@@ -1,6 +1,7 @@
 package toDoList;
 
 import java.time.*;
+import java.util.Scanner;
 
 public class Task {
     private String name;
@@ -66,6 +67,23 @@ public class Task {
      */
     public void markAsDone() {
         this.status = true;
+    }
+
+    /**
+     * Sets Task's name, project and due date in accordance with user's input.
+     */
+    public void createTask() {
+        Scanner userInput = new Scanner(System.in);
+
+        System.out.println("Name: ");
+        this.setName(userInput.nextLine());
+
+        System.out.println("Project: ");
+        this.setProject(userInput.nextLine());
+
+        System.out.println("Due Date: ");
+        System.out.println("Date must be entered in a format: YYYY-MM-DD");
+        this.setDueDate(LocalDate.parse(userInput.nextLine()));
     }
 
     public String toString() {
