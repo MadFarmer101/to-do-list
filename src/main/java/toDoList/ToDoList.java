@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class ToDoList {
     private ArrayList<Task> toDoList = new ArrayList<>();
 
+    /**
+     * @return toDoList.
+     */
     public ArrayList<Task> getToDoList() {
         return toDoList;
     }
