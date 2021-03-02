@@ -32,7 +32,15 @@ public class ToDoList {
         Scanner userInput = new Scanner(System.in);
 
         System.out.println("Please enter a name of a task you want to delete: ");
-        return false;
+        while (iterator.hasNext()) {
+            if (userInput.nextLine().equalsIgnoreCase(iterator.next().getName())) {
+                toDoList.remove(iterator.next());
+                System.out.println("Task has been successfully deleted");
+                return true;
+            } else {
+                System.out.println("You don't have a task with that name");
+            }
+        }
     }
 
 }
