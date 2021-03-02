@@ -23,9 +23,15 @@ public class ToDoList {
         task.createTask();
 
         toDoList.add(task);
+
         System.out.println("Task is successfully added");
     }
 
+    /**
+     * Asks a user to input a name of the task that he wants deleted.
+     * Loops toDoList field
+     * @return true if name that user entered is matching any of a tasks names from the list
+     */
     public boolean removeTask() {
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();

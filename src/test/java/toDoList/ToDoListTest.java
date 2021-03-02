@@ -51,10 +51,10 @@ public class ToDoListTest {
     public void userSuccessfullyRemovesTaskByName() {
         String input = "task2";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-
         System.setIn(inputStream);
 
         toDoLy.removeTask();
+
         assertEquals(1, toDoLy.getToDoList().size());
     }
 
@@ -71,6 +71,7 @@ public class ToDoListTest {
         toDoLy.removeTask();
 
         String expectedOutput = "There is no task with that name on the list." + System.getProperty("line.separator");
+
         assertEquals(expectedOutput, outputStream.toString());
     }
 

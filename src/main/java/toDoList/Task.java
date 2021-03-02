@@ -1,7 +1,6 @@
 package toDoList;
 
 import java.time.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Task {
