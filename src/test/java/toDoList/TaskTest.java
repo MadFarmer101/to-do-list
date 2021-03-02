@@ -1,7 +1,11 @@
 package toDoList;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.time.*;
 
 public class TaskTest {
@@ -39,5 +43,15 @@ public class TaskTest {
         LocalDate deadline = LocalDate.parse("2021-03-03");
         task.setDueDate(deadline);
         assertTrue(task.getDueDate().toString().equals("2021-03-03"));
+    }
+
+    @Test
+    public void taskHasACorrectName() {
+        Task task = new Task();
+        String input = "task1\nproject1\n2021-05-03";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+        task.createTask();
+        assertEquals("task1", task.getName());
     }
 }

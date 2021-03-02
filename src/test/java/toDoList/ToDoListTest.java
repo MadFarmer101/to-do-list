@@ -8,7 +8,7 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoListTest {
-    static  ToDoList toDoLy = new ToDoList();
+    static ToDoList toDoLy = new ToDoList();
 
     @BeforeAll
     public static void add2TasksToTheList() {

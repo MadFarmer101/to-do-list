@@ -9,6 +9,10 @@ public class ToDoList {
         return toDoList;
     }
 
+    /**
+     * Calls on createTask method to set all the task's fields.
+     * After task is created it's added to the list.
+     */
     public void addTask() {
         Task task = new Task();
 
