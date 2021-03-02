@@ -69,6 +69,9 @@ public class Task {
         this.status = true;
     }
 
+    /**
+     * Sets Task's name, project and due date in accordance with user's input.
+     */
     public void createTask() {
         Scanner userInput = new Scanner(System.in);
 

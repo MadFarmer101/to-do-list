@@ -11,7 +11,7 @@ public class ToDoListTest {
     static  ToDoList toDoLy = new ToDoList();
 
     @BeforeAll
-    public static void createATask() {
+    public static void add2TasksToTheList() {
         String input = "task1\nproject1\n2021-05-03";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
 
@@ -28,5 +28,20 @@ public class ToDoListTest {
     @Test
     public void checksForCorrectListSize() {
         assertEquals(2, toDoLy.getToDoList().size());
+    }
+
+    @Test
+    public void checksForCorrectTaskName() {
+        assertEquals("task1", toDoLy.getToDoList().get(0).getName());
+    }
+
+    @Test
+    public void checksForCorrectTaskProject() {
+        assertEquals("project2", toDoLy.getToDoList().get(1).getProject());
+    }
+
+    @Test
+    public void checksForCorrectTaskDueDate() {
+        assertEquals("2021-04-15", toDoLy.getToDoList().get(1).getDueDate().toString());
     }
 }
