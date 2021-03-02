@@ -1,5 +1,6 @@
 package toDoList;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,12 +10,20 @@ import java.io.InputStream;
 import java.time.*;
 
 public class TaskTest {
+    static Task task = new Task();
+
+    @BeforeAll
+    public static void createTask() {
+        String input = "task1\nproject1\n2021-05-03";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        task.createTask();
+    }
 
     @Test
-    void taskHasACorrectName() {
-        Task task = new Task();
-        task.setName("task1");
-        assertTrue(task.getName().equals("task1"));
+    public void taskHasACorrectName() {
+        assertEquals("task1", task.getName());
     }
 
     @Test
@@ -26,32 +35,20 @@ public class TaskTest {
 
     @Test
     void statusIsFalseWhenTaskIsCreated() {
-        Task task = new Task();
         assertFalse(task.status());
     }
 
     @Test
     void statusIsTrueWhenTaskIsMarkedAsDone() {
-        Task task = new Task();
         task.markAsDone();
         assertTrue(task.status());
     }
 
     @Test
     void taskHasACorrectDueDate() {
-        Task task = new Task();
         LocalDate deadline = LocalDate.parse("2021-03-03");
         task.setDueDate(deadline);
         assertTrue(task.getDueDate().toString().equals("2021-03-03"));
     }
 
-    @Test
-    public void taskHasACorrectName() {
-        Task task = new Task();
-        String input = "task1\nproject1\n2021-05-03";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-        task.createTask();
-        assertEquals("task1", task.getName());
-    }
 }
