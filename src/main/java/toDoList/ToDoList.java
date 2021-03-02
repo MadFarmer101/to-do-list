@@ -1,6 +1,8 @@
 package toDoList;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class ToDoList {
     private ArrayList<Task> toDoList = new ArrayList<>();
@@ -23,6 +25,14 @@ public class ToDoList {
 
         toDoList.add(task);
         System.out.println("Task is successfully added");
+    }
+
+    public boolean removeTask() {
+        Iterator<Task> iterator = toDoList.iterator();
+        Scanner userInput = new Scanner(System.in);
+
+        System.out.println("Please enter a name of a task you want to delete: ");
+        return false;
     }
 
 }
