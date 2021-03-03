@@ -1,5 +1,6 @@
 package toDoList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -115,6 +116,25 @@ public class ToDoList {
             if (task.getName().equalsIgnoreCase(userInput)) {
                 System.out.println("Please enter a number next to the option you would like to edit");
                 System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
+
+                switch (choice) {
+                    case 1 -> {
+                        System.out.println("Please enter new name:");
+                        task.setName(userInput);
+                        System.out.println("Name is successfully changed");
+                    }
+                    case 2 -> {
+                        System.out.println("Please enter new project:");
+                        task.setProject(userInput);
+                        System.out.println("Project is successfully changed");
+                    }
+                    case 3 -> {
+                        System.out.println("Please enter new due date:");
+                        task.setDueDate(LocalDate.parse(userInput));
+                        System.out.println("Project is successfully changed");
+                    }
+                    default -> System.out.println("Please enter 1, 2 or 3");
+                }
             }
         }
 
