@@ -107,4 +107,13 @@ public class ToDoListTest {
 
     }
 
+    @Test
+    public void userCanSeeTaskListWithSameDueDate() {
+        String input = "2021-04-15";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        assertEquals(2, toDoLy.showTasksByDueDate().size());
+    }
+
 }
