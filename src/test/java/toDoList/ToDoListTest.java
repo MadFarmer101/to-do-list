@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoListTest {
-    static ToDoList toDoLy = new ToDoList();
+    private static ToDoList toDoLy = new ToDoList();
 
     @BeforeAll
     public static void add2TasksToTheList() {

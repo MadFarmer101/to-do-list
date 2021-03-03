@@ -74,7 +74,12 @@ public class ToDoList {
         return tasksWithSameProject;
     }
 
-
+    /**
+     * Asks a user to input a date of the tasks he wants the view
+     * Search through toDoList field to see if there is a match by date user entered
+     * @return null if there is no match and display a message
+     *  otherwise an ArrayList populated with tasks with the same due date
+     */
     public ArrayList<Task> showTasksByDueDate() {
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
