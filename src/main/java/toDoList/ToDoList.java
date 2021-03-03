@@ -80,7 +80,7 @@ public class ToDoList {
         String userInput = scanner.nextLine();
 
         ArrayList<Task> tasksWithSameDate = new ArrayList<>();
-        System.out.println("Please enter a Date (YYYY-MM-DD): ");
+        System.out.println("Please enter a Date (YYYY-MM-DD):");
 
         for (Task task : toDoList) {
             if (task.getDueDate().toString().equalsIgnoreCase(userInput))
@@ -88,7 +88,7 @@ public class ToDoList {
         }
 
         if (tasksWithSameDate.isEmpty()) {
-            System.err.println("You have no tasks for that due date.");
+            System.out.println("You have no tasks for that due date.");
             return null;
         }
         return tasksWithSameDate;
