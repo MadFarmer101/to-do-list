@@ -30,6 +30,7 @@ public class ToDoList {
     /**
      * Asks a user to input a name of the task that he wants deleted.
      * Loops toDoList field
+     *
      * @return true if name that user entered is matching any of a tasks names from the list
      */
     public boolean removeTask() {
@@ -52,8 +53,9 @@ public class ToDoList {
     /**
      * Asks a user to input a project of the tasks he wants the view
      * Search through toDoList field to see if there is a match by project
+     *
      * @return null if there is no match and display an error message
-     *  otherwise an ArrayList populated with tasks with the same project as the user input
+     * otherwise an ArrayList populated with tasks with the same project as the user input
      */
     public ArrayList<Task> showTasksByProject() {
         Scanner scanner = new Scanner(System.in);
@@ -77,8 +79,9 @@ public class ToDoList {
     /**
      * Asks a user to input a date of the tasks he wants the view
      * Search through toDoList field to see if there is a match by date user entered
+     *
      * @return null if there is no match and display a message
-     *  otherwise an ArrayList populated with tasks with the same due date
+     * otherwise an ArrayList populated with tasks with the same due date
      */
     public ArrayList<Task> showTasksByDueDate() {
         Scanner scanner = new Scanner(System.in);
