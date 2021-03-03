@@ -49,4 +49,12 @@ public class ToDoList {
         return false;
     }
 
+    public void showTasksByProject() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        System.out.println("Please enter a project name:");
+        
+    }
+
 }
