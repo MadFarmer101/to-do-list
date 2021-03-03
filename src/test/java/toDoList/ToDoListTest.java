@@ -25,11 +25,17 @@ public class ToDoListTest {
 
         System.setIn(inputStream2);
         toDoLy.addTask();
+
+        String input3 = "task3\nproject1\n2021-04-15";
+        InputStream inputStream3 = new ByteArrayInputStream(input3.getBytes());
+
+        System.setIn(inputStream3);
+        toDoLy.addTask();
     }
 
     @Test
     public void checksForCorrectListSize() {
-        assertEquals(2, toDoLy.getToDoList().size());
+        assertEquals(3, toDoLy.getToDoList().size());
     }
 
     @Test
@@ -55,13 +61,13 @@ public class ToDoListTest {
 
         toDoLy.removeTask();
 
-        assertEquals(1, toDoLy.getToDoList().size());
+        assertEquals(2, toDoLy.getToDoList().size());
     }
 
     @Test
-    public void userCanSeeCorrectErrorMessage() {
+    public void userGetsErrMsgWhenRemovingTaskWithNoNameMatch() {
 
-        String input = "task3";
+        String input = "task4";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
@@ -73,6 +79,32 @@ public class ToDoListTest {
         String expectedOutput = "There is no task with that name on the list." + System.getProperty("line.separator");
 
         assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    @Test
+    public void userCanSeeTaskListWithSameProject() {
+        String input = "project1";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        assertEquals(2, toDoLy.showTasksByProject().size());
+    }
+
+    @Test
+    public void userGetsErrMsgWhenNoTasksHasThatProject() {
+        String input = "project5";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(outputStream));
+
+        String expectedOutput = "You have no tasks with that project name." + System.getProperty("line.separator");
+
+        toDoLy.showTasksByProject();
+
+        assertEquals(expectedOutput, outputStream.toString());
+
     }
 
 }
