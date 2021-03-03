@@ -6,7 +6,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,11 +25,17 @@ public class ToDoListTest {
 
         System.setIn(inputStream2);
         toDoLy.addTask();
+
+        String input3 = "task3\nproject1\n2021-04-15";
+        InputStream inputStream3 = new ByteArrayInputStream(input3.getBytes());
+
+        System.setIn(inputStream3);
+        toDoLy.addTask();
     }
 
     @Test
     public void checksForCorrectListSize() {
-        assertEquals(2, toDoLy.getToDoList().size());
+        assertEquals(3, toDoLy.getToDoList().size());
     }
 
     @Test
@@ -56,13 +61,13 @@ public class ToDoListTest {
 
         toDoLy.removeTask();
 
-        assertEquals(1, toDoLy.getToDoList().size());
+        assertEquals(2, toDoLy.getToDoList().size());
     }
 
     @Test
     public void userCanSeeCorrectErrorMessage() {
 
-        String input = "task3";
+        String input = "task4";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
@@ -77,16 +82,12 @@ public class ToDoListTest {
     }
 
     @Test
-    public  void userCanSeeAllTheTasksUnderSameProject() {
+    public  void userCanSeeTaskListWithSameProject() {
         String input = "project1";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        ArrayList<Task> tasksWithSameProject = new ArrayList<>();
-
-        tasksWithSameProject = toDoLy.showTasksByProject();
-
-        assertEquals(1, tasksWithSameProject.size());
+        assertEquals(2, toDoLy.showTasksByProject().size());
     }
 
 }
