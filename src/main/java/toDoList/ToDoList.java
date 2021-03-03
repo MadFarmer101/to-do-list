@@ -54,7 +54,12 @@ public class ToDoList {
         String userInput = scanner.nextLine();
 
         System.out.println("Please enter a project name:");
-        
+
+        for (Task task : toDoList) {
+            if (task.getProject().equalsIgnoreCase(userInput))
+                System.out.println(task);
+        }
+
     }
 
 }
