@@ -75,4 +75,15 @@ public class ToDoListTest {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
+    @Test
+    public  void userCanSeeAllTheTasksUnderSameProject() {
+        String input = "project1";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        toDoLy.showTasksByProject();
+
+        
+    }
+
 }
