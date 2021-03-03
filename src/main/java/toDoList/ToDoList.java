@@ -53,7 +53,7 @@ public class ToDoList {
      * Asks a user to input a project of the tasks he wants the view
      * Search through toDoList field to see if there is a match by project
      * @return null if there is no match and display an error message
-     *  @return An ArrayList populated with tasks with the same project as the user input
+     *  otherwise an ArrayList populated with tasks with the same project as the user input
      */
     public ArrayList<Task> showTasksByProject() {
         Scanner scanner = new Scanner(System.in);
@@ -72,6 +72,26 @@ public class ToDoList {
             return null;
         }
         return tasksWithSameProject;
+    }
+
+
+    public ArrayList<Task> showTasksByDueDate() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        ArrayList<Task> tasksWithSameDate = new ArrayList<>();
+        System.out.println("Please enter a Date (YYYY-MM-DD): ");
+
+        for (Task task : toDoList) {
+            if (task.getDueDate().toString().equalsIgnoreCase(userInput))
+                tasksWithSameDate.add(task);
+        }
+
+        if (tasksWithSameDate.isEmpty()) {
+            System.err.println("You have no tasks for that due date.");
+            return null;
+        }
+        return tasksWithSameDate;
     }
 
 }
