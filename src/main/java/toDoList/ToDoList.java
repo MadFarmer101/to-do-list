@@ -30,6 +30,7 @@ public class ToDoList {
     /**
      * Asks a user to input a name of the task that he wants deleted.
      * Loops toDoList field
+     *
      * @return true if name that user entered is matching any of a tasks names from the list
      */
     public boolean removeTask() {
@@ -62,10 +63,11 @@ public class ToDoList {
         }
 
         if (tasksWithSameProject.isEmpty()) {
-            System.out.println("You have no tasks with that project name");
+            System.err.println("You have no tasks with that project name.");
             return null;
-        } else
-            return tasksWithSameProject;
+        }
+
+        return tasksWithSameProject;
     }
 
 }
