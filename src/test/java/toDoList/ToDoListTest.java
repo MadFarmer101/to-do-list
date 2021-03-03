@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -81,9 +82,11 @@ public class ToDoListTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        toDoLy.showTasksByProject();
+        ArrayList<Task> tasksWithSameProject = new ArrayList<>();
 
+        tasksWithSameProject = toDoLy.showTasksByProject();
 
+        assertEquals(1, tasksWithSameProject.size());
     }
 
 }
