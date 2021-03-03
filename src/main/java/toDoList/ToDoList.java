@@ -102,4 +102,22 @@ public class ToDoList {
         return tasksWithSameDate;
     }
 
+    public void editTask() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        System.out.println("Please enter a name of a task you would like to edit:");
+
+        for (Task task : toDoList) {
+            Scanner scanner2 = new Scanner(System.in);
+            int choice = scanner2.nextInt();
+
+            if (task.getName().equalsIgnoreCase(userInput)) {
+                System.out.println("Please enter a number next to the option you would like to edit");
+                System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
+            }
+        }
+
+    }
+
 }
