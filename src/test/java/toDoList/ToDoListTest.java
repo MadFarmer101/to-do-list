@@ -116,4 +116,20 @@ public class ToDoListTest {
         assertEquals(2, toDoLy.showTasksByDueDate().size());
     }
 
+    @Test
+    public void userGetsErrMsgWhenNoTasksHasThatDueDate() {
+        String input = "2021-04-16";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(outputStream));
+
+        String expectedOutput = "You have no tasks for that due date." + System.getProperty("line.separator");
+
+        toDoLy.showTasksByDueDate();
+
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
 }
