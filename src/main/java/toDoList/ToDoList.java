@@ -61,6 +61,11 @@ public class ToDoList {
                 tasksWithSameProject.add(task);
         }
 
+        if (tasksWithSameProject.isEmpty()) {
+            System.out.println("You have no tasks with that project name");
+            return null;
+        } else
+            return tasksWithSameProject;
     }
 
 }
