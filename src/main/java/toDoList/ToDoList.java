@@ -49,15 +49,16 @@ public class ToDoList {
         return false;
     }
 
-    public void showTasksByProject() {
+    public ArrayList<Task> showTasksByProject() {
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
 
+        ArrayList<Task> tasksWithSameProject = new ArrayList<>();
         System.out.println("Please enter a project name:");
 
         for (Task task : toDoList) {
             if (task.getProject().equalsIgnoreCase(userInput))
-                System.out.println(task);
+                tasksWithSameProject.add(task);
         }
 
     }
