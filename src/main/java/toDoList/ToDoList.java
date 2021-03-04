@@ -28,6 +28,21 @@ public class ToDoList {
         System.out.println("Task is successfully added");
     }
 
+    public Task findTaskByName() {
+
+        System.out.println("Please enter a name of a task:");
+
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        for (Task task : toDoList) {
+            if(task.getName().equalsIgnoreCase(userInput))
+                return task;
+        }
+        System.out.println("You don't have a task with that name");
+        return null;
+    }
+
     /**
      * Asks a user to input a name of the task that he wants deleted.
      * Loops toDoList field
