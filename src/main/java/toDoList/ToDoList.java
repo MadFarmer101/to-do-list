@@ -36,7 +36,7 @@ public class ToDoList {
         String userInput = scanner.nextLine();
 
         for (Task task : toDoList) {
-            if(task.getName().equalsIgnoreCase(userInput))
+            if (task.getName().equalsIgnoreCase(userInput))
                 return task;
         }
         System.out.println("You don't have a task with that name");
@@ -119,40 +119,39 @@ public class ToDoList {
     }
 
     public void editTask() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
 
-        System.out.println("Please enter a name of a task you would like to edit:");
+        Task task = this.findTaskByName();
 
-        for (Task task : toDoList) {
-            Scanner scanner2 = new Scanner(System.in);
-            Scanner scanner3 = new Scanner(System.in);
-            int choice = scanner2.nextInt();
+        if (task != null) {
+            System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
+            System.out.println("Please enter a number next to the option you would like to edit");
 
-            if (task.getName().equalsIgnoreCase(userInput)) {
-                System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
-                System.out.println("Please enter a number next to the option you would like to edit");
+            Scanner choice = new Scanner(System.in);
+            Scanner userInput = new Scanner(System.in);
 
-                switch (choice) {
-                    case 1 -> {
-                        System.out.println("Please enter new name:");
-                        task.setName(scanner3.nextLine());
-                        System.out.println("Name is successfully changed");
-                    }
-                    case 2 -> {
-                        System.out.println("Please enter new project:");
-                        task.setProject(scanner3.nextLine());
-                        System.out.println("Project is successfully changed");
-                    }
-                    case 3 -> {
-                        System.out.println("Please enter new due date:");
-                        task.setDueDate(LocalDate.parse(scanner3.nextLine()));
-                        System.out.println("Project is successfully changed");
-                    }
-                    default -> System.out.println("Please enter 1, 2 or 3");
+            switch (choice.nextInt()) {
+                case 1 -> {
+                    System.out.println("Please enter new name:");
+                    task.setName(userInput.nextLine());
+                    System.out.println("Name is successfully changed");
+                }
+                case 2 -> {
+                    System.out.println("Please enter new project:");
+                    task.setProject(userInput.nextLine());
+                    System.out.println("Project is successfully changed");
+                }
+                case 3 -> {
+                    System.out.println("Please enter new due date:");
+                    task.setDueDate(LocalDate.parse(userInput.nextLine()));
+                    System.out.println("Project is successfully changed");
+                }
+                default -> {
+                    System.out.println("There is no option with that number. Let's go from the begging");
+                    this.editTask();
                 }
             }
         }
+
 
     }
 
