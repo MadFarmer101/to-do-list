@@ -15,9 +15,9 @@ public class App {
         ToDoList toDo = new ToDoList();
         toDo.addTask();
 
-        toDo.editTask();
+        toDo.removeTask();
 
+        System.out.println(toDo.getToDoList().size());
 
-        System.out.println( toDo.getToDoList().get(0).getName());
     }
 }

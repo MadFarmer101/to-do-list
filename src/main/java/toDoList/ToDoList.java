@@ -50,20 +50,16 @@ public class ToDoList {
      * @return true if name that user entered is matching any of a tasks names from the list
      */
     public boolean removeTask() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
 
-        System.out.println("Please enter a name of a task you want to delete:");
+        Task task = this.findTaskByName();
 
-        for (Task task : toDoList) {
-            if (task.getName().equalsIgnoreCase(userInput)) {
-                toDoList.remove(task);
-                System.out.println("Task has been successfully removed");
-                return true;
-            }
-        }
-        System.err.println("There is no task with that name on the list.");
-        return false;
+        if (task != null) {
+            toDoList.remove(task);
+            System.out.println("Task has been successfully removed");
+            return true;
+
+        } else
+            return false;
     }
 
     /**
