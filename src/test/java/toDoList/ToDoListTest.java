@@ -65,7 +65,7 @@ public class ToDoListTest {
     }
 
     @Test
-    public void userGetsErrMsgWhenRemovingTaskWithNoNameMatch() {
+    public void userGetsErrMsgWhenNameDoesntMatch() {
 
         String input = "task4";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
@@ -74,9 +74,9 @@ public class ToDoListTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setErr(new PrintStream(outputStream));
 
-        toDoLy.removeTask();
+        toDoLy.findTaskByName();
 
-        String expectedOutput = "There is no task with that name on the list." + System.getProperty("line.separator");
+        String expectedOutput = "You don't have a task with that name." + System.getProperty("line.separator");
 
         assertEquals(expectedOutput, outputStream.toString());
     }

@@ -39,7 +39,7 @@ public class ToDoList {
             if (task.getName().equalsIgnoreCase(userInput))
                 return task;
         }
-        System.out.println("You don't have a task with that name");
+        System.err.println("You don't have a task with that name.");
         return null;
     }
 
