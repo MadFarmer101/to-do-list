@@ -9,7 +9,7 @@ A simple command line JAVA program to create and manage a personal Todo List.
 * JUnit
 ## Setup
 - Clone this repository.
-### Run the following command:
+##### Run the following command:
 ``` gradle run```
 ## Basic features
 * Models a task with:
