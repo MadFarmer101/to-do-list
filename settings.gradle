@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'to-do-list'
-include('app')
+include('src')
