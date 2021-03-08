@@ -29,7 +29,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'to.do.list.App'
+    mainClass = 'toDoList.App'
 }
 
 tasks.named('test') {
