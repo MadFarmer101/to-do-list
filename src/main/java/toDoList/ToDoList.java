@@ -150,7 +150,7 @@ public class ToDoList {
         }
     }
 
-    public int doneTasksCount() {
+    public int completedTasksCount() {
         int count = 0;
 
         for (Task task : toDoList) {

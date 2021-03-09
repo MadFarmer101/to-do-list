@@ -132,4 +132,9 @@ public class ToDoListTest {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
+    @Test
+    public void checkCompletedTaskCount() {
+        assertEquals(0, toDoLy.completedTasksCount());
+    }
+
 }
