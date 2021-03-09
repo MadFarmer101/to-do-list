@@ -142,4 +142,31 @@ public class ToDoListTest {
         assertEquals(3, toDoLy.notCompletedTasksCount());
     }
 
+    @Test
+    public void markTaskAsDoneOnTheList() {
+        String input = "task1";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        String expectedOutput = "Please enter a name of a task:\nTask is marked as done!" + System.getProperty("line.separator");
+
+        toDoLy.markTaskAsDoneOnTheList();
+
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    @Test
+    public void correctCountWhenTaskIsNarkedAsDone() {
+        String input = "task1";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        toDoLy.markTaskAsDoneOnTheList();
+
+        assertEquals(1, toDoLy.completedTasksCount());
+    }
+
 }

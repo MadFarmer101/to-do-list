@@ -177,6 +177,7 @@ public class ToDoList {
 
         if (!task.status()) {
             task.markAsDone();
+            System.out.println("Task is marked as done!");
             return true;
         }
         else {
