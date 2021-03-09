@@ -161,4 +161,15 @@ public class ToDoList {
         return count;
     }
 
+    public int notCompletedTasksCount() {
+        int count = 0;
+
+        for (Task task : toDoList) {
+            if (!task.status()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }

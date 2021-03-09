@@ -137,4 +137,9 @@ public class ToDoListTest {
         assertEquals(0, toDoLy.completedTasksCount());
     }
 
+    @Test
+    public void checkNotCompletedTaskCount() {
+        assertEquals(3, toDoLy.notCompletedTasksCount());
+    }
+
 }
