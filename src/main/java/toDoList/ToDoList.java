@@ -1,5 +1,6 @@
 package toDoList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,6 +28,21 @@ public class ToDoList {
         System.out.println("Task is successfully added");
     }
 
+    public Task findTaskByName() {
+
+        System.out.println("Please enter a name of a task:");
+
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        for (Task task : toDoList) {
+            if (task.getName().equalsIgnoreCase(userInput))
+                return task;
+        }
+        System.err.println("You don't have a task with that name.");
+        return null;
+    }
+
     /**
      * Asks a user to input a name of the task that he wants deleted.
      * Loops toDoList field
@@ -34,20 +50,16 @@ public class ToDoList {
      * @return true if name that user entered is matching any of a tasks names from the list
      */
     public boolean removeTask() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
 
-        System.out.println("Please enter a name of a task you want to delete:");
+        Task task = this.findTaskByName();
 
-        for (Task task : toDoList) {
-            if (task.getName().equalsIgnoreCase(userInput)) {
-                toDoList.remove(task);
-                System.out.println("Task has been successfully removed");
-                return true;
-            }
-        }
-        System.err.println("There is no task with that name on the list.");
-        return false;
+        if (task != null) {
+            toDoList.remove(task);
+            System.out.println("Task has been successfully removed");
+            return true;
+
+        } else
+            return false;
     }
 
     /**
@@ -100,6 +112,44 @@ public class ToDoList {
             return null;
         }
         return tasksWithSameDate;
+    }
+
+    public void editTask() {
+
+        Task task = this.findTaskByName();
+
+        if (task != null) {
+            System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
+            System.out.println("Please enter a number next to the option you would like to edit");
+
+
+            Scanner userInput = new Scanner(System.in);
+            String choice = userInput.nextLine();
+
+            switch (choice) {
+                case "1" -> {
+                    System.out.println("Please enter new name:");
+                    task.setName(userInput.nextLine());
+                    System.out.println("Name is successfully changed");
+                }
+                case "2" -> {
+                    System.out.println("Please enter new project:");
+                    task.setProject(userInput.nextLine());
+                    System.out.println("Project is successfully changed");
+                }
+                case "3" -> {
+                    System.out.println("Please enter new due date:");
+                    task.setDueDate(LocalDate.parse(userInput.nextLine()));
+                    System.out.println("Project is successfully changed");
+                }
+                default -> {
+                    System.out.println("There is no option with that number. Let's go from the begging");
+                    this.editTask();
+                }
+            }
+        }
+
+
     }
 
 }
