@@ -114,6 +114,11 @@ public class ToDoList {
         return tasksWithSameDate;
     }
 
+    /**
+     * A method that finds the task by name
+     * Then prompts the user what field he wants to edit
+     * Sets task name, project or due date depending on users choice
+     */
     public void editTask() {
 
         Task task = this.findTaskByName();
@@ -148,8 +153,56 @@ public class ToDoList {
                 }
             }
         }
+    }
 
+    /**
+     * A method to count the number of tasks with status true
+     *
+     * @return number of tasks with status true
+     */
+    public int completedTasksCount() {
+        int count = 0;
 
+        for (Task task : toDoList) {
+            if (task.status()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * A method to count the number of tasks with status false
+     *
+     * @return number of tasks with status false
+     */
+    public int notCompletedTasksCount() {
+        int count = 0;
+
+        for (Task task : toDoList) {
+            if (!task.status()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * A method that finds task by name and marks it status to true if it was false before
+     *
+     * @return true if task is marked as done, false otherwise
+     */
+    public boolean markTaskAsDoneOnTheList() {
+        Task task = this.findTaskByName();
+
+        if (!task.status()) {
+            task.markAsDone();
+            System.out.println("Task is marked as done!");
+            return true;
+        } else {
+            System.err.println("Task is already marked as completed!");
+            return false;
+        }
     }
 
 }
