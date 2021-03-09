@@ -148,8 +148,17 @@ public class ToDoList {
                 }
             }
         }
+    }
 
+    public int doneTasksCount() {
+        int count = 0;
 
+        for (Task task : toDoList) {
+            if (task.status()) {
+                count++;
+            }
+        }
+        return count;
     }
 
 }
