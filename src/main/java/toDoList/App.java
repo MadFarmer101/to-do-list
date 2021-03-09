@@ -12,12 +12,5 @@ public class App {
 
         System.out.println(new App().getGreeting());
 
-        ToDoList toDo = new ToDoList();
-        toDo.addTask();
-
-        toDo.removeTask();
-
-        System.out.println(toDo.getToDoList().size());
-
     }
 }

@@ -122,21 +122,22 @@ public class ToDoList {
             System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
             System.out.println("Please enter a number next to the option you would like to edit");
 
-            Scanner choice = new Scanner(System.in);
-            Scanner userInput = new Scanner(System.in);
 
-            switch (choice.nextInt()) {
-                case 1 -> {
+            Scanner userInput = new Scanner(System.in);
+            String choice = userInput.nextLine();
+
+            switch (choice) {
+                case "1" -> {
                     System.out.println("Please enter new name:");
                     task.setName(userInput.nextLine());
                     System.out.println("Name is successfully changed");
                 }
-                case 2 -> {
+                case "2" -> {
                     System.out.println("Please enter new project:");
                     task.setProject(userInput.nextLine());
                     System.out.println("Project is successfully changed");
                 }
-                case 3 -> {
+                case "3" -> {
                     System.out.println("Please enter new due date:");
                     task.setDueDate(LocalDate.parse(userInput.nextLine()));
                     System.out.println("Project is successfully changed");
