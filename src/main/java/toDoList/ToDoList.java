@@ -157,6 +157,7 @@ public class ToDoList {
 
     /**
      * A method to count the number of tasks with status true
+     *
      * @return number of tasks with status true
      */
     public int completedTasksCount() {
@@ -172,6 +173,7 @@ public class ToDoList {
 
     /**
      * A method to count the number of tasks with status false
+     *
      * @return number of tasks with status false
      */
     public int notCompletedTasksCount() {
@@ -187,6 +189,7 @@ public class ToDoList {
 
     /**
      * A method that finds task by name and marks it status to true if it was false before
+     *
      * @return true if task is marked as done, false otherwise
      */
     public boolean markTaskAsDoneOnTheList() {
