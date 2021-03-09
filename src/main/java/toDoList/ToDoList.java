@@ -172,4 +172,17 @@ public class ToDoList {
         return count;
     }
 
+    public boolean markTaskAsDoneOnTheList() {
+        Task task = this.findTaskByName();
+
+        if (!task.status()) {
+            task.markAsDone();
+            return true;
+        }
+        else {
+            System.out.println("Task is already marked as completed");
+            return false;
+        }
+    }
+
 }
