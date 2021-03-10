@@ -22,4 +22,13 @@ public class Menus {
         System.out.println(">>> 4) Return to Main Menu");
         System.out.println(">> Please enter your choice (1-4):");
     }
+
+    public static void showListMenu() {
+        System.out.println("\n>> Show List");
+        System.out.println("\n>> Pick an option:");
+        System.out.println(">>> 1) Show List by Due Date");
+        System.out.println(">>> 2) Show List by Project");
+        System.out.println(">>> 3) Return to Main Menu");
+        System.out.println(">> Please enter your choice (1-3):");
+    }
 }
