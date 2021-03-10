@@ -205,4 +205,14 @@ public class ToDoList {
         }
     }
 
+    public void showFormattedList() {
+        toDoList.stream()
+                .forEach(task -> System.out.println(String.format(
+                        task.getName(),
+                        task.getProject(),
+                        task.getDueDate(),
+                        (task.status() ? "Done" : "Not Done")
+                )));
+    }
+
 }

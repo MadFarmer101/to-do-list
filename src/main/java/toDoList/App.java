@@ -21,7 +21,7 @@ public class App {
 
                 switch (choice) {
                     case "1":
-                        System.out.println("Under Construction");
+                        toDoListy.showFormattedList();
                         break;
                     case "2":
                         toDoListy.addTask();
