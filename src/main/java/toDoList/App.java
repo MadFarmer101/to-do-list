@@ -3,14 +3,45 @@
  */
 package toDoList;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World";
-    }
 
     public static void main(String[] args) {
+        ToDoList toDoListy = new ToDoList();
+        String choice = "0";
 
-        System.out.println(new App().getGreeting());
+        try {
+            Scanner userInput = new Scanner(System.in);
+
+            while (!choice.equals("4")) {
+                Menus.mainMenu(toDoListy.completedTasksCount(), toDoListy.notCompletedTasksCount());
+                choice = userInput.nextLine();
+
+                switch (choice) {
+                    case "1":
+                        System.out.println("Under Construction");
+                        break;
+                    case "2":
+                        toDoListy.addTask();
+                        break;
+                    case "3":
+                        Menus.editListMenu();
+                        break;
+                    case "4":
+                        break;
+                    default:
+                        System.out.println("We didn't do that choice yet, please type a number from given choices.");
+
+                }
+            }
+
+            System.out.println("Bye, Bye");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(Arrays.toString(e.getStackTrace()));
+        }
 
     }
 }
