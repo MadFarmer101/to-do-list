@@ -11,6 +11,14 @@ plugins {
     id 'application'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'toDoList.App'
+        )
+    }
+}
+
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()

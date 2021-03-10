@@ -206,13 +206,13 @@ public class ToDoList {
     }
 
     public void showFormattedList() {
-        toDoList.stream()
-                .forEach(task -> System.out.println(String.format(
-                        task.getName(),
-                        task.getProject(),
-                        task.getDueDate(),
-                        (task.status() ? "Done" : "Not Done")
-                )));
+        if (toDoList.size() == 0)
+            System.err.println("\n>>>You don't have any tasks.");
+        else
+            System.out.println("\n>>>TO DO LIST:");
+        for (Task task : toDoList) {
+            System.out.println(task);
+        }
     }
 
 }
