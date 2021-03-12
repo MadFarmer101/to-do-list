@@ -10,19 +10,15 @@ public class Menus {
         System.out.println("\n>> Pick an option:");
         System.out.println(">>> 1) Show ToDo List (by date or project)");
         System.out.println(">>> 2) Add New Task");
-        System.out.println(">>> 3) Edit List (update, mark as done, remove)");
-        System.out.println(">>> 4) Save and Quit");
-        System.out.println(">> Please enter your choice (1-4):");
+        System.out.println(">>> 3) Remove Task");
+        System.out.println(">>> 4) Mark Task as Done");
+        System.out.println(">>> 5) Edit Task");
+        System.out.println(">>> 6) Save and Quit");
+        System.out.println(">> Please enter your choice (1-6):");
     }
 
-    public static void editListMenu() {
-        System.out.println("\n>> Edit List");
-        System.out.println("\n>> Pick an option:");
-        System.out.println(">>> 1) Edit Task (change name, project or dueDate)");
-        System.out.println(">>> 2) Mark Task as done");
-        System.out.println(">>> 3) Remove a Task");
-        System.out.println(">>> 4) Return to Main Menu");
-        System.out.println(">> Please enter your choice (1-4):");
+    public static void editTaskMenu() {
+  
     }
 
     public static void showListMenu() {
