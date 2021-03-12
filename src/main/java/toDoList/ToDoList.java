@@ -254,7 +254,7 @@ public class ToDoList {
 
         try {
             if (!Files.isReadable(Paths.get(filename))) {
-                System.out.println("The data file, i.e., " + filename + " does not exists");
+                System.out.println(filename + " does not exists!");
                 return false;
             }
 

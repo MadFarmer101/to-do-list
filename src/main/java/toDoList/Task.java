@@ -1,9 +1,10 @@
 package toDoList;
 
+import java.io.Serializable;
 import java.time.*;
 import java.util.Scanner;
 
-public class Task {
+public class Task implements Serializable {
     private String name;
     private String project;
     private boolean status;
