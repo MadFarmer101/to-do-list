@@ -59,9 +59,7 @@ public class ToDoListTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        toDoLy.removeTask();
-
-        assertEquals(2, toDoLy.getToDoList().size());
+        assertTrue(toDoLy.removeTask());
     }
 
     @Test
@@ -82,47 +80,39 @@ public class ToDoListTest {
     }
 
 
-//    @Test
-//    public void userGetsErrMsgWhenNoTasksHasThatProject() {
-//        String input = "project5";
-//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-//        System.setIn(inputStream);
-//
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        System.setErr(new PrintStream(outputStream));
-//
-//        String expectedOutput = "You have no tasks with that project name." + System.getProperty("line.separator");
-//
-//        toDoLy.showTasksByProject();
-//
-//        assertEquals(expectedOutput, outputStream.toString());
-//
-//    }
+    @Test
+    public void userGetsErrMsgWhenNoTasksHasThatProject() {
+        String input = "project450";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
 
-//    @Test
-//    public void userCanSeeTaskListWithSameDueDate() {
-//        String input = "2021-04-15";
-//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-//        System.setIn(inputStream);
-//
-//        assertEquals(2, toDoLy.showTasksByDueDate().size());
-//    }
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
 
-//    @Test
-//    public void userGetsMsgWhenNoTasksHasThatDueDate() {
-//        String input = "2021-04-16";
-//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-//        System.setIn(inputStream);
-//
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(outputStream));
-//
-//        String expectedOutput = "Please enter a Date (YYYY-MM-DD):\nYou have no tasks for that due date." + System.getProperty("line.separator");
-//
-//        toDoLy.showTasksByDueDate();
-//
-//        assertEquals(expectedOutput, outputStream.toString());
-//    }
+        String expectedOutput = "\nPlease enter a project name:\n\nNo tasks found for that project!" + System.getProperty("line.separator");
+
+        toDoLy.showTasksByDateOrProject("2");
+
+        assertEquals(expectedOutput, outputStream.toString());
+
+    }
+
+
+    @Test
+    public void userGetsMsgWhenNoTasksHasThatDueDate() {
+        String input = "2021-04-16";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        String expectedOutput = "\nPlease enter a Due Date (YYYY-MM-DD):\n\nNo tasks found for that due date!" + System.getProperty("line.separator");
+
+        toDoLy.showTasksByDateOrProject("1");
+
+        assertEquals(expectedOutput, outputStream.toString());
+    }
 
     @Test
     public void returnsTrueWhenTaskIsSuccessfullyMarkedAsDone() {
@@ -150,7 +140,7 @@ public class ToDoListTest {
 
     @Test
     public void checkCompletedTaskCount() {
-        assertEquals(1, toDoLy.completedTasksCount());
+        assertEquals(2, toDoLy.completedTasksCount());
     }
 
     @Test

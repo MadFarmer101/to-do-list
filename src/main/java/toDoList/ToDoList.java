@@ -99,7 +99,6 @@ public class ToDoList {
             }
 
         } else if (choice.equals("2")) {
-
             System.out.println("\nPlease enter a project name:");
             String usersProjectInput = userInput.nextLine();
 
@@ -109,11 +108,10 @@ public class ToDoList {
                     hitsCounter++;
                 }
             }
-
         }
 
         if (hitsCounter == 0 && (choice.equals("1") || choice.equals("2")))
-            System.err.println("\nNo tasks found for your query. Try again");
+            System.out.println("\nNo tasks found for that " + (choice.equals("1") ? "due date" : "project") + "!");
     }
 
 
