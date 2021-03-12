@@ -100,30 +100,30 @@ public class ToDoListTest {
 //
 //    }
 
-    @Test
-    public void userCanSeeTaskListWithSameDueDate() {
-        String input = "2021-04-15";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
+//    @Test
+//    public void userCanSeeTaskListWithSameDueDate() {
+//        String input = "2021-04-15";
+//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(inputStream);
+//
+//        assertEquals(2, toDoLy.showTasksByDueDate().size());
+//    }
 
-        assertEquals(2, toDoLy.showTasksByDueDate().size());
-    }
-
-    @Test
-    public void userGetsMsgWhenNoTasksHasThatDueDate() {
-        String input = "2021-04-16";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        String expectedOutput = "Please enter a Date (YYYY-MM-DD):\nYou have no tasks for that due date." + System.getProperty("line.separator");
-
-        toDoLy.showTasksByDueDate();
-
-        assertEquals(expectedOutput, outputStream.toString());
-    }
+//    @Test
+//    public void userGetsMsgWhenNoTasksHasThatDueDate() {
+//        String input = "2021-04-16";
+//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(inputStream);
+//
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(outputStream));
+//
+//        String expectedOutput = "Please enter a Date (YYYY-MM-DD):\nYou have no tasks for that due date." + System.getProperty("line.separator");
+//
+//        toDoLy.showTasksByDueDate();
+//
+//        assertEquals(expectedOutput, outputStream.toString());
+//    }
 
     @Test
     public void markTaskAsDoneOnTheList() {

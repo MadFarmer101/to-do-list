@@ -31,8 +31,6 @@ public class ToDoList {
 
     public Task findTaskByName() {
 
-        System.out.println("Please enter a name of a task:");
-
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
 
@@ -51,6 +49,8 @@ public class ToDoList {
      * @return true if name that user entered is matching any of a tasks names from the list
      */
     public boolean removeTask() {
+
+        System.out.println("\nPlease enter a name of a task you would like to remove:");
 
         Task task = this.findTaskByName();
 
@@ -75,7 +75,7 @@ public class ToDoList {
         int hitsCounter = 0;
 
         if (choice.equals("1")) {
-            System.out.println("\nPlease enter a Date (YYYY-MM-DD):");
+            System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):");
             String usersDateInput = userInput.nextLine();
 
             for (Task task : toDoList) {
@@ -103,31 +103,6 @@ public class ToDoList {
             System.err.println("\nNo tasks found for your query. Try again");
     }
 
-    /**
-     * Asks a user to input a date of the tasks he wants the view
-     * Search through toDoList field to see if there is a match by date user entered
-     *
-     * @return null if there is no match and display a message
-     * otherwise an ArrayList populated with tasks with the same due date
-     */
-    public ArrayList<Task> showTasksByDueDate() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-
-        ArrayList<Task> tasksWithSameDate = new ArrayList<>();
-        System.out.println("Please enter a Date (YYYY-MM-DD):");
-
-        for (Task task : toDoList) {
-            if (task.getDueDate().toString().equalsIgnoreCase(userInput))
-                tasksWithSameDate.add(task);
-        }
-
-        if (tasksWithSameDate.isEmpty()) {
-            System.out.println("You have no tasks for that due date.");
-            return null;
-        }
-        return tasksWithSameDate;
-    }
 
     /**
      * A method that finds the task by name
@@ -138,6 +113,8 @@ public class ToDoList {
 
         if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 
+            System.out.println("Please enter a name of a task you would like to edit:");
+
             Task task = this.findTaskByName();
             Scanner userInput = new Scanner(System.in);
 
@@ -147,17 +124,17 @@ public class ToDoList {
                     case "1" -> {
                         System.out.println("Please enter new name:");
                         task.setName(userInput.nextLine());
-                        System.out.println("Name is successfully changed");
+                        System.out.println("\nTask's name is successfully changed");
                     }
                     case "2" -> {
                         System.out.println("Please enter new project:");
                         task.setProject(userInput.nextLine());
-                        System.out.println("Project is successfully changed");
+                        System.out.println("\nTask's project is successfully changed");
                     }
                     case "3" -> {
                         System.out.println("Please enter new due date:");
                         task.setDueDate(LocalDate.parse(userInput.nextLine()));
-                        System.out.println("Project is successfully changed");
+                        System.out.println("\nTask's Due Date is successfully changed");
                     }
                 }
             }
