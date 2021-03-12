@@ -136,33 +136,29 @@ public class ToDoList {
      */
     public void editTask(String choice) {
 
-        Task task = this.findTaskByName();
+        if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 
-        if (task != null) {
-//            System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
-//            System.out.println("Please enter a number next to the option you would like to edit");
-
-
+            Task task = this.findTaskByName();
             Scanner userInput = new Scanner(System.in);
 
-            switch (choice) {
-                case "1" -> {
-                    System.out.println("Please enter new name:");
-                    task.setName(userInput.nextLine());
-                    System.out.println("Name is successfully changed");
-                }
-                case "2" -> {
-                    System.out.println("Please enter new project:");
-                    task.setProject(userInput.nextLine());
-                    System.out.println("Project is successfully changed");
-                }
-                case "3" -> {
-                    System.out.println("Please enter new due date:");
-                    task.setDueDate(LocalDate.parse(userInput.nextLine()));
-                    System.out.println("Project is successfully changed");
-                }
-                default -> {
-                    System.out.println("There is no option with that number. Let's go from the begging");
+            if (task != null) {
+
+                switch (choice) {
+                    case "1" -> {
+                        System.out.println("Please enter new name:");
+                        task.setName(userInput.nextLine());
+                        System.out.println("Name is successfully changed");
+                    }
+                    case "2" -> {
+                        System.out.println("Please enter new project:");
+                        task.setProject(userInput.nextLine());
+                        System.out.println("Project is successfully changed");
+                    }
+                    case "3" -> {
+                        System.out.println("Please enter new due date:");
+                        task.setDueDate(LocalDate.parse(userInput.nextLine()));
+                        System.out.println("Project is successfully changed");
+                    }
                 }
             }
         }
