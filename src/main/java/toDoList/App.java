@@ -14,7 +14,6 @@ import java.util.Scanner;
  * @since 2021-03-11
  **/
 public class App {
-
     /**
      * main method to run the command line based "ToDoList" application
      *
@@ -58,7 +57,7 @@ public class App {
                 }
             }
 
-            System.out.println("\nBye, Bye");
+            System.out.println("\nYour ToDoListy is saved! Bye, Bye...");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println(Arrays.toString(e.getStackTrace()));
