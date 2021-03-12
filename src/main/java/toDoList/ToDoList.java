@@ -1,5 +1,6 @@
 package toDoList;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -69,23 +70,37 @@ public class ToDoList {
      * @return null if there is no match and display an error message
      * otherwise an ArrayList populated with tasks with the same project as the user input
      */
-    public ArrayList<Task> showTasksByProject() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+    public void showTasksByDateOrProject(String choice) {
+        Scanner userInput = new Scanner(System.in);
+        int hitsCounter = 0;
 
-        ArrayList<Task> tasksWithSameProject = new ArrayList<>();
-        System.out.println("Please enter a project name:");
+        if (choice.equals("1")) {
+            System.out.println("\nPlease enter a Date (YYYY-MM-DD):");
+            String usersDateInput = userInput.nextLine();
 
-        for (Task task : toDoList) {
-            if (task.getProject().equalsIgnoreCase(userInput))
-                tasksWithSameProject.add(task);
+            for (Task task : toDoList) {
+                if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
+                    System.out.println(task);
+                    hitsCounter++;
+                }
+            }
+
+        } else if (choice.equals("2")) {
+
+            System.out.println("\nPlease enter a project name:");
+            String usersProjectInput = userInput.nextLine();
+
+            for (Task task : toDoList) {
+                if (task.getProject().equalsIgnoreCase(usersProjectInput)) {
+                    System.out.println(task);
+                    hitsCounter++;
+                }
+            }
+
         }
 
-        if (tasksWithSameProject.isEmpty()) {
-            System.err.println("You have no tasks with that project name.");
-            return null;
-        }
-        return tasksWithSameProject;
+        if (hitsCounter == 0 && (choice.equals("1") || choice.equals("2")))
+            System.err.println("\nNo tasks found for your query. Try again");
     }
 
     /**

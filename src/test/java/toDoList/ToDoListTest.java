@@ -81,31 +81,24 @@ public class ToDoListTest {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
-    @Test
-    public void userCanSeeTaskListWithSameProject() {
-        String input = "project1";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
 
-        assertEquals(2, toDoLy.showTasksByProject().size());
-    }
 
-    @Test
-    public void userGetsErrMsgWhenNoTasksHasThatProject() {
-        String input = "project5";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setErr(new PrintStream(outputStream));
-
-        String expectedOutput = "You have no tasks with that project name." + System.getProperty("line.separator");
-
-        toDoLy.showTasksByProject();
-
-        assertEquals(expectedOutput, outputStream.toString());
-
-    }
+//    @Test
+//    public void userGetsErrMsgWhenNoTasksHasThatProject() {
+//        String input = "project5";
+//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(inputStream);
+//
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        System.setErr(new PrintStream(outputStream));
+//
+//        String expectedOutput = "You have no tasks with that project name." + System.getProperty("line.separator");
+//
+//        toDoLy.showTasksByProject();
+//
+//        assertEquals(expectedOutput, outputStream.toString());
+//
+//    }
 
     @Test
     public void userCanSeeTaskListWithSameDueDate() {

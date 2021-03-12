@@ -1,5 +1,7 @@
 package toDoList;
 
+import java.util.Scanner;
+
 public class Menus {
 
     public static void mainMenu(int tasksCompleted, int notCompletedTasks) {
@@ -24,11 +26,12 @@ public class Menus {
     }
 
     public static void showListMenu() {
-        System.out.println("\n>> Show List");
+        System.out.println("\n>> Show List Menu");
         System.out.println("\n>> Pick an option:");
         System.out.println(">>> 1) Show List by Due Date");
         System.out.println(">>> 2) Show List by Project");
-        System.out.println(">>> 3) Return to Main Menu");
-        System.out.println(">> Please enter your choice (1-3):");
+        System.out.println(">>> Press any key to return to Main Menu");
+        System.out.println(">>  Please enter your choice (1-2):");
+
     }
 }

@@ -22,6 +22,8 @@ public class App {
                 switch (choice) {
                     case "1":
                         toDoListy.showFormattedList();
+                        Menus.showListMenu();
+                        toDoListy.showTasksByDateOrProject(userInput.nextLine());
                         break;
                     case "2":
                         toDoListy.addTask();
@@ -32,8 +34,8 @@ public class App {
                     case "4":
                         break;
                     default:
-                        System.out.println("We didn't do that choice yet, please type a number from given choices.");
-
+                        System.out.println("\nWe don't have that choice, please type a number from given choices!");
+                        Thread.sleep(3000);
                 }
             }
 
