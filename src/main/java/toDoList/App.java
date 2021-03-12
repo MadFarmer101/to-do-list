@@ -15,7 +15,7 @@ public class App {
         try {
             Scanner userInput = new Scanner(System.in);
 
-            while (!choice.equals("4")) {
+            while (!choice.equals("6")) {
                 Menus.mainMenu(toDoListy.completedTasksCount(), toDoListy.notCompletedTasksCount());
                 choice = userInput.nextLine();
 
@@ -33,6 +33,8 @@ public class App {
                         toDoListy.removeTask();
                         break;
                     case "4":
+                        toDoListy.showFormattedList();
+                        toDoListy.markTaskAsDoneOnTheList();
                         break;
                     default:
                         System.out.println("\nWe don't have that choice, please type a number from given choices!");
