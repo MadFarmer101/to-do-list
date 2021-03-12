@@ -82,7 +82,6 @@ public class ToDoListTest {
     }
 
 
-
 //    @Test
 //    public void userGetsErrMsgWhenNoTasksHasThatProject() {
 //        String input = "project5";
@@ -126,23 +125,16 @@ public class ToDoListTest {
 //    }
 
     @Test
-    public void markTaskAsDoneOnTheList() {
+    public void returnsTrueWhenTaskIsSuccessfullyMarkedAsDone() {
         String input = "task2";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        String expectedOutput = "Please enter a name of a task:\nTask is marked as done!" + System.getProperty("line.separator");
-
-        toDoLy.markTaskAsDoneOnTheList();
-
-        assertEquals(expectedOutput, outputStream.toString());
+        assertTrue(toDoLy.markTaskAsDoneOnTheList());
     }
 
     @Test
-    public void checksForErrMsgWhenMarkingATaskDoneThatIsDone() {
+    public void returnsFalseWhenTaskisAlreadyMarkedDone() {
         String input = "task1";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
@@ -153,15 +145,7 @@ public class ToDoListTest {
         InputStream inputStream2 = new ByteArrayInputStream(input2.getBytes());
         System.setIn(inputStream2);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setErr(new PrintStream(outputStream));
-
-        String expectedOutput = "Task is already marked as completed!" + System.getProperty("line.separator");
-
-
-        toDoLy.markTaskAsDoneOnTheList();
-
-        assertEquals(expectedOutput, outputStream.toString());
+        assertFalse(toDoLy.markTaskAsDoneOnTheList());
     }
 
     @Test
