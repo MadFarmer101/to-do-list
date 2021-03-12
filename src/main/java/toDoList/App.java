@@ -39,6 +39,9 @@ public class App {
                         Menus.editTaskMenu();
                         toDoListy.editTask(userInput.nextLine());
                     }
+                    case "6" -> {
+
+                    }
                     default -> {
                         System.out.println("\nWe don't have that choice, please type a number from given choices!");
                         Thread.sleep(3000);
