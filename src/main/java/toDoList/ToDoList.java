@@ -56,7 +56,7 @@ public class ToDoList {
 
         if (task != null) {
             toDoList.remove(task);
-            System.out.println("Task has been successfully removed");
+            System.out.println("\nTask has been successfully removed");
             return true;
 
         } else

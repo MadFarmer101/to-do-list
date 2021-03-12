@@ -29,7 +29,8 @@ public class App {
                         toDoListy.addTask();
                         break;
                     case "3":
-                        Menus.editListMenu();
+                        toDoListy.showFormattedList();
+                        toDoListy.removeTask();
                         break;
                     case "4":
                         break;
