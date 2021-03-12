@@ -19,6 +19,10 @@ jar {
     }
 }
 
+run {
+    standardInput = System.in
+}
+
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()

@@ -1,7 +1,21 @@
 package toDoList;
 
+/**
+ * This class contains various menus that user will interact with
+ *
+ * @author Janko
+ * @version 1.0
+ * @since 2021-03-11
+ **/
 public class Menus {
 
+    /**
+     * This method will display the main menu
+     * with all options for user selection.
+     *
+     * @param tasksCompleted    takes the number of complete tasks (int) to show in main menu
+     * @param notCompletedTasks takes the number of incomplete tasks (int) to show in main menu
+     */
     public static void mainMenu(int tasksCompleted, int notCompletedTasks) {
         System.out.println("\n>> Welcome to ToDoListy");
         System.out.println(">> You have " + notCompletedTasks + " tasks todo and " + tasksCompleted + " tasks are done!");
@@ -15,6 +29,10 @@ public class Menus {
         System.out.println(">> Please enter your choice (1-6):");
     }
 
+    /**
+     * This method displays the menu to show the options to edit task fields
+     * according to user's selection
+     */
     public static void editTaskMenu() {
         System.out.println("\n>> Edit Task Menu");
         System.out.println("\n>> Pick an option:");
@@ -25,6 +43,10 @@ public class Menus {
         System.out.println(">>  Please enter your choice (1-3):");
     }
 
+    /**
+     * This method displays the menu to show the options to display all tasks
+     * according to user's selection
+     */
     public static void showListMenu() {
         System.out.println("\n>> Show List Menu");
         System.out.println("\n>> Pick an option:");

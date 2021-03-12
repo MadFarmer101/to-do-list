@@ -6,8 +6,20 @@ package toDoList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * This is main class of the project
+ *
+ * @author Janko
+ * @version 1.0
+ * @since 2021-03-11
+ **/
 public class App {
 
+    /**
+     * main method to run the command line based "ToDoList" application
+     *
+     * @param args array of String holding command line parameters
+     */
     public static void main(String[] args) {
         ToDoList toDoListy = new ToDoList();
         String choice = "0";
@@ -40,16 +52,13 @@ public class App {
                         toDoListy.editTask(userInput.nextLine());
                     }
                     case "6" -> {
-
                     }
-                    default -> {
-                        System.out.println("\nWe don't have that choice, please type a number from given choices!");
-                        Thread.sleep(3000);
-                    }
+                    default -> System.out.println("\nWe don't have that choice, please type a number from given choices!");
+                    // Thread.sleep(3000);
                 }
             }
 
-            System.out.println("Bye, Bye");
+            System.out.println("\nBye, Bye");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println(Arrays.toString(e.getStackTrace()));

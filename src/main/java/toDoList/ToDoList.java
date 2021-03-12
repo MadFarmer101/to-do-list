@@ -1,12 +1,19 @@
 package toDoList;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class represents ToDoList which contains the ArrayList of Task objects
+ *
+ * @author Janko
+ * @version 1.0
+ * @since 2021-03-12
+ **/
+
 public class ToDoList {
-    private ArrayList<Task> toDoList = new ArrayList<>();
+    private final ArrayList<Task> toDoList = new ArrayList<>();
 
     /**
      * @return toDoList.
@@ -16,7 +23,7 @@ public class ToDoList {
     }
 
     /**
-     * Calls on createTask method to set all the task's fields.
+     * A method calls on createTask method,
      * After task is created it's added to the list.
      */
     public void addTask() {
@@ -29,6 +36,12 @@ public class ToDoList {
         System.out.println("Task is successfully added");
     }
 
+    /**
+     * A method to read the value from user
+     * and after loops through the list trying to find a match by name
+     *
+     * @return task when name is matching with user's input
+     */
     public Task findTaskByName() {
 
         Scanner scanner = new Scanner(System.in);
@@ -43,10 +56,11 @@ public class ToDoList {
     }
 
     /**
-     * Asks a user to input a name of the task that he wants deleted.
-     * Loops toDoList field
+     * A method calls on findTaskByName method
+     * and stores the value in a Task object
      *
-     * @return true if name that user entered is matching any of a tasks names from the list
+     * @return true if Task object is not equal to null
+     * and removes the object from the List, false otherwise
      */
     public boolean removeTask() {
 
@@ -64,11 +78,10 @@ public class ToDoList {
     }
 
     /**
-     * Asks a user to input a project of the tasks he wants the view
-     * Search through toDoList field to see if there is a match by project
+     * A method to display the contents of ArrayList
      *
-     * @return null if there is no match and display an error message
-     * otherwise an ArrayList populated with tasks with the same project as the user input
+     * @param choice a string holding a number, "1" for sorting by due date, "2" for sorting by project
+     *               The method will print a statement that it couldn't find a task if there is no match with user's input
      */
     public void showTasksByDateOrProject(String choice) {
         Scanner userInput = new Scanner(System.in);
@@ -105,9 +118,10 @@ public class ToDoList {
 
 
     /**
-     * A method that finds the task by name
-     * Then prompts the user what field he wants to edit
-     * Sets task name, project or due date depending on users choice
+     * @param choice a string holding a number, "1" for editing tasks's name, "2" for editing tasks's project,
+     *               "3" for editing task's due date
+     *               The method calls on findTaskByName and stores the value in the Task object
+     *               if Task object is not equal to null the method will prompt the user to enter a new value for a selected field.
      */
     public void editTask(String choice) {
 
@@ -139,6 +153,7 @@ public class ToDoList {
                 }
             }
         }
+        System.out.println("\nReturning to Main Menu!");
     }
 
     /**
@@ -179,18 +194,24 @@ public class ToDoList {
      * @return true if task is marked as done, false otherwise
      */
     public boolean markTaskAsDoneOnTheList() {
+
+        System.out.println("\nPlease enter a name of a task you would like to mark as done:");
+
         Task task = this.findTaskByName();
 
         if (!task.status()) {
             task.markAsDone();
-            System.out.println("Task is marked as done!");
+            System.out.println("\nTask is successfully marked as done!");
             return true;
         } else {
-            System.err.println("Task is already marked as completed!");
+            System.out.println("\nTask is already marked as done!");
             return false;
         }
     }
 
+    /**
+     * A method to display the contents of ArrayList
+     */
     public void showFormattedList() {
         if (toDoList.size() == 0)
             System.err.println("\n>>>You don't have any tasks.");
