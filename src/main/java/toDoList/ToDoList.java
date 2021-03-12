@@ -134,17 +134,16 @@ public class ToDoList {
      * Then prompts the user what field he wants to edit
      * Sets task name, project or due date depending on users choice
      */
-    public void editTask() {
+    public void editTask(String choice) {
 
         Task task = this.findTaskByName();
 
         if (task != null) {
-            System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
-            System.out.println("Please enter a number next to the option you would like to edit");
+//            System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
+//            System.out.println("Please enter a number next to the option you would like to edit");
 
 
             Scanner userInput = new Scanner(System.in);
-            String choice = userInput.nextLine();
 
             switch (choice) {
                 case "1" -> {
@@ -164,7 +163,6 @@ public class ToDoList {
                 }
                 default -> {
                     System.out.println("There is no option with that number. Let's go from the begging");
-                    this.editTask();
                 }
             }
         }

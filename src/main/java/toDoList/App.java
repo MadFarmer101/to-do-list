@@ -20,25 +20,29 @@ public class App {
                 choice = userInput.nextLine();
 
                 switch (choice) {
-                    case "1":
+                    case "1" -> {
                         toDoListy.showFormattedList();
                         Menus.showListMenu();
                         toDoListy.showTasksByDateOrProject(userInput.nextLine());
-                        break;
-                    case "2":
-                        toDoListy.addTask();
-                        break;
-                    case "3":
+                    }
+                    case "2" -> toDoListy.addTask();
+                    case "3" -> {
                         toDoListy.showFormattedList();
                         toDoListy.removeTask();
-                        break;
-                    case "4":
+                    }
+                    case "4" -> {
                         toDoListy.showFormattedList();
                         toDoListy.markTaskAsDoneOnTheList();
-                        break;
-                    default:
+                    }
+                    case "5" -> {
+                        toDoListy.showFormattedList();
+                        Menus.editTaskMenu();
+                        toDoListy.editTask(userInput.nextLine());
+                    }
+                    default -> {
                         System.out.println("\nWe don't have that choice, please type a number from given choices!");
                         Thread.sleep(3000);
+                    }
                 }
             }
 
