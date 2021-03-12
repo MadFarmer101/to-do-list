@@ -4,8 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class represents ToDoList which contains the ArrayList of Task objects
+ *
+ * @author Janko
+ * @version 1.0
+ * @since 2021-03-12
+ **/
+
 public class ToDoList {
-    private ArrayList<Task> toDoList = new ArrayList<>();
+    private final ArrayList<Task> toDoList = new ArrayList<>();
 
     /**
      * @return toDoList.
@@ -15,7 +23,7 @@ public class ToDoList {
     }
 
     /**
-     * Calls on createTask method to set all the task's fields.
+     * A method calls on createTask method,
      * After task is created it's added to the list.
      */
     public void addTask() {
@@ -28,9 +36,13 @@ public class ToDoList {
         System.out.println("Task is successfully added");
     }
 
+    /**
+     * A method to read the value from user
+     * and after loops through the list trying to find a match by name
+     *
+     * @return task when name is matching with user's input
+     */
     public Task findTaskByName() {
-
-        System.out.println("Please enter a name of a task:");
 
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
@@ -44,18 +56,21 @@ public class ToDoList {
     }
 
     /**
-     * Asks a user to input a name of the task that he wants deleted.
-     * Loops toDoList field
+     * A method calls on findTaskByName method
+     * and stores the value in a Task object
      *
-     * @return true if name that user entered is matching any of a tasks names from the list
+     * @return true if Task object is not equal to null
+     * and removes the object from the List, false otherwise
      */
     public boolean removeTask() {
+
+        System.out.println("\nPlease enter a name of a task you would like to remove:");
 
         Task task = this.findTaskByName();
 
         if (task != null) {
             toDoList.remove(task);
-            System.out.println("Task has been successfully removed");
+            System.out.println("\nTask has been successfully removed");
             return true;
 
         } else
@@ -63,96 +78,80 @@ public class ToDoList {
     }
 
     /**
-     * Asks a user to input a project of the tasks he wants the view
-     * Search through toDoList field to see if there is a match by project
+     * A method to display the contents of ArrayList
      *
-     * @return null if there is no match and display an error message
-     * otherwise an ArrayList populated with tasks with the same project as the user input
+     * @param choice a string holding a number, "1" for sorting by due date, "2" for sorting by project
+     *               The method will print a statement that it couldn't find a task if there is no match with user's input
      */
-    public ArrayList<Task> showTasksByProject() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+    public void showTasksByDateOrProject(String choice) {
+        Scanner userInput = new Scanner(System.in);
+        int hitsCounter = 0;
 
-        ArrayList<Task> tasksWithSameProject = new ArrayList<>();
-        System.out.println("Please enter a project name:");
+        if (choice.equals("1")) {
+            System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):");
+            String usersDateInput = userInput.nextLine();
 
-        for (Task task : toDoList) {
-            if (task.getProject().equalsIgnoreCase(userInput))
-                tasksWithSameProject.add(task);
-        }
-
-        if (tasksWithSameProject.isEmpty()) {
-            System.err.println("You have no tasks with that project name.");
-            return null;
-        }
-        return tasksWithSameProject;
-    }
-
-    /**
-     * Asks a user to input a date of the tasks he wants the view
-     * Search through toDoList field to see if there is a match by date user entered
-     *
-     * @return null if there is no match and display a message
-     * otherwise an ArrayList populated with tasks with the same due date
-     */
-    public ArrayList<Task> showTasksByDueDate() {
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-
-        ArrayList<Task> tasksWithSameDate = new ArrayList<>();
-        System.out.println("Please enter a Date (YYYY-MM-DD):");
-
-        for (Task task : toDoList) {
-            if (task.getDueDate().toString().equalsIgnoreCase(userInput))
-                tasksWithSameDate.add(task);
-        }
-
-        if (tasksWithSameDate.isEmpty()) {
-            System.out.println("You have no tasks for that due date.");
-            return null;
-        }
-        return tasksWithSameDate;
-    }
-
-    /**
-     * A method that finds the task by name
-     * Then prompts the user what field he wants to edit
-     * Sets task name, project or due date depending on users choice
-     */
-    public void editTask() {
-
-        Task task = this.findTaskByName();
-
-        if (task != null) {
-            System.out.println("1) Edit Name\n2) Edit Project\n3) Edit Due Date");
-            System.out.println("Please enter a number next to the option you would like to edit");
-
-
-            Scanner userInput = new Scanner(System.in);
-            String choice = userInput.nextLine();
-
-            switch (choice) {
-                case "1" -> {
-                    System.out.println("Please enter new name:");
-                    task.setName(userInput.nextLine());
-                    System.out.println("Name is successfully changed");
+            for (Task task : toDoList) {
+                if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
+                    System.out.println(task);
+                    hitsCounter++;
                 }
-                case "2" -> {
-                    System.out.println("Please enter new project:");
-                    task.setProject(userInput.nextLine());
-                    System.out.println("Project is successfully changed");
-                }
-                case "3" -> {
-                    System.out.println("Please enter new due date:");
-                    task.setDueDate(LocalDate.parse(userInput.nextLine()));
-                    System.out.println("Project is successfully changed");
-                }
-                default -> {
-                    System.out.println("There is no option with that number. Let's go from the begging");
-                    this.editTask();
+            }
+
+        } else if (choice.equals("2")) {
+            System.out.println("\nPlease enter a project name:");
+            String usersProjectInput = userInput.nextLine();
+
+            for (Task task : toDoList) {
+                if (task.getProject().equalsIgnoreCase(usersProjectInput)) {
+                    System.out.println(task);
+                    hitsCounter++;
                 }
             }
         }
+
+        if (hitsCounter == 0 && (choice.equals("1") || choice.equals("2")))
+            System.out.println("\nNo tasks found for that " + (choice.equals("1") ? "due date" : "project") + "!");
+    }
+
+
+    /**
+     * @param choice a string holding a number, "1" for editing tasks's name, "2" for editing tasks's project,
+     *               "3" for editing task's due date
+     *               The method calls on findTaskByName and stores the value in the Task object
+     *               if Task object is not equal to null the method will prompt the user to enter a new value for a selected field.
+     */
+    public void editTask(String choice) {
+
+        if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
+
+            System.out.println("Please enter a name of a task you would like to edit:");
+
+            Task task = this.findTaskByName();
+            Scanner userInput = new Scanner(System.in);
+
+            if (task != null) {
+
+                switch (choice) {
+                    case "1" -> {
+                        System.out.println("Please enter new name:");
+                        task.setName(userInput.nextLine());
+                        System.out.println("\nTask's name is successfully changed");
+                    }
+                    case "2" -> {
+                        System.out.println("Please enter new project:");
+                        task.setProject(userInput.nextLine());
+                        System.out.println("\nTask's project is successfully changed");
+                    }
+                    case "3" -> {
+                        System.out.println("Please enter new due date:");
+                        task.setDueDate(LocalDate.parse(userInput.nextLine()));
+                        System.out.println("\nTask's Due Date is successfully changed");
+                    }
+                }
+            }
+        }
+        System.out.println("\nReturning to Main Menu!");
     }
 
     /**
@@ -193,15 +192,31 @@ public class ToDoList {
      * @return true if task is marked as done, false otherwise
      */
     public boolean markTaskAsDoneOnTheList() {
+
+        System.out.println("\nPlease enter a name of a task you would like to mark as done:");
+
         Task task = this.findTaskByName();
 
         if (!task.status()) {
             task.markAsDone();
-            System.out.println("Task is marked as done!");
+            System.out.println("\nTask is successfully marked as done!");
             return true;
         } else {
-            System.err.println("Task is already marked as completed!");
+            System.out.println("\nTask is already marked as done!");
             return false;
+        }
+    }
+
+    /**
+     * A method to display the contents of ArrayList
+     */
+    public void showFormattedList() {
+        if (toDoList.size() == 0)
+            System.err.println("\n>>>You don't have any tasks.");
+        else
+            System.out.println("\n>>>TO DO LIST:");
+        for (Task task : toDoList) {
+            System.out.println(task);
         }
     }
 

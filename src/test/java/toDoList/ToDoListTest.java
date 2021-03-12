@@ -59,9 +59,7 @@ public class ToDoListTest {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        toDoLy.removeTask();
-
-        assertEquals(2, toDoLy.getToDoList().size());
+        assertTrue(toDoLy.removeTask());
     }
 
     @Test
@@ -81,40 +79,24 @@ public class ToDoListTest {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
-    @Test
-    public void userCanSeeTaskListWithSameProject() {
-        String input = "project1";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        assertEquals(2, toDoLy.showTasksByProject().size());
-    }
 
     @Test
     public void userGetsErrMsgWhenNoTasksHasThatProject() {
-        String input = "project5";
+        String input = "project450";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setErr(new PrintStream(outputStream));
+        System.setOut(new PrintStream(outputStream));
 
-        String expectedOutput = "You have no tasks with that project name." + System.getProperty("line.separator");
+        String expectedOutput = "\nPlease enter a project name:\n\nNo tasks found for that project!" + System.getProperty("line.separator");
 
-        toDoLy.showTasksByProject();
+        toDoLy.showTasksByDateOrProject("2");
 
         assertEquals(expectedOutput, outputStream.toString());
 
     }
 
-    @Test
-    public void userCanSeeTaskListWithSameDueDate() {
-        String input = "2021-04-15";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
-
-        assertEquals(2, toDoLy.showTasksByDueDate().size());
-    }
 
     @Test
     public void userGetsMsgWhenNoTasksHasThatDueDate() {
@@ -125,31 +107,24 @@ public class ToDoListTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        String expectedOutput = "Please enter a Date (YYYY-MM-DD):\nYou have no tasks for that due date." + System.getProperty("line.separator");
+        String expectedOutput = "\nPlease enter a Due Date (YYYY-MM-DD):\n\nNo tasks found for that due date!" + System.getProperty("line.separator");
 
-        toDoLy.showTasksByDueDate();
+        toDoLy.showTasksByDateOrProject("1");
 
         assertEquals(expectedOutput, outputStream.toString());
     }
 
     @Test
-    public void markTaskAsDoneOnTheList() {
+    public void returnsTrueWhenTaskIsSuccessfullyMarkedAsDone() {
         String input = "task2";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        String expectedOutput = "Please enter a name of a task:\nTask is marked as done!" + System.getProperty("line.separator");
-
-        toDoLy.markTaskAsDoneOnTheList();
-
-        assertEquals(expectedOutput, outputStream.toString());
+        assertTrue(toDoLy.markTaskAsDoneOnTheList());
     }
 
     @Test
-    public void checksForErrMsgWhenMarkingATaskDoneThatIsDone() {
+    public void returnsFalseWhenTaskisAlreadyMarkedDone() {
         String input = "task1";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
@@ -160,20 +135,12 @@ public class ToDoListTest {
         InputStream inputStream2 = new ByteArrayInputStream(input2.getBytes());
         System.setIn(inputStream2);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setErr(new PrintStream(outputStream));
-
-        String expectedOutput = "Task is already marked as completed!" + System.getProperty("line.separator");
-
-
-        toDoLy.markTaskAsDoneOnTheList();
-
-        assertEquals(expectedOutput, outputStream.toString());
+        assertFalse(toDoLy.markTaskAsDoneOnTheList());
     }
 
     @Test
     public void checkCompletedTaskCount() {
-        assertEquals(1, toDoLy.completedTasksCount());
+        assertEquals(2, toDoLy.completedTasksCount());
     }
 
     @Test

@@ -81,12 +81,11 @@ public class Task {
         System.out.println("Project: ");
         this.setProject(userInput.nextLine());
 
-        System.out.println("Due Date: ");
-        System.out.println("Date must be entered in a format: YYYY-MM-DD");
+        System.out.println("Due Date (YYYY-MM-DD): ");
         this.setDueDate(LocalDate.parse(userInput.nextLine()));
     }
 
     public String toString() {
-        return "\nTASK: " + name + "\nPROJECT: " + project + "\nDUE DATE: " + dueDate + "\nSTATUS: " + (status ? "Task is completed" : "Task is not completed");
+        return "\n====================\nTASK: " + name + "\nPROJECT: " + project + "\nDUE DATE: " + dueDate + "\nSTATUS: " + (status ? "Done" : "Not Done\n====================");
     }
 }
