@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class TaskTest {
 
     // Create a new Task object
-    static Task task = new Task();
+    private static final Task task = new Task();
 
     /**
      * Set up all the Task's field's

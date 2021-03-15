@@ -45,7 +45,7 @@ public class ToDoList {
      *
      * @return task when name is matching with user's input
      */
-    public Task findTaskByName() {
+    private Task findTaskByName() {
 
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
