@@ -80,31 +80,12 @@ public class ToDoList {
     }
 
     /**
-     * A method to display the contents of ArrayList
+     * A method that finds all the tasks with under same project
      *
-     * @param choice a string holding a number, "1" for sorting by due date, "2" for sorting by project
-     * The method will print a statement that it couldn't find a task if there is no match with user's input
+     * @return true if at least one task is found for inputted project, false otherwise.
      */
-    public void showTasksByDateOrProject(String choice) {
-        Scanner userInput = new Scanner(System.in);
-
-        if (choice.equals("1")) {
-            System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):");
-            String usersDateInput = userInput.nextLine();
-
-            for (Task task : toDoList) {
-                if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
-                    System.out.println(task);
-                }
-            }
-
-        } else if (choice.equals("2")) {
-           this.showTasksByProject();
-        }
-    }
-
-    public void showTasksByProject() {
-        int hits = 0;
+    public boolean findTasksBelongingToSameProject() {
+        boolean result = false;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nPlease enter a project name:");
@@ -113,17 +94,59 @@ public class ToDoList {
         for (Task task : toDoList) {
             if (task.getProject().equalsIgnoreCase(usersDateInput)) {
                 System.out.println(task);
-                hits++;
+                result = true;
             }
         }
 
-        if (hits == 0)
-            System.out.println("There is no tasks under that project on your ToDoLisy");
+        if (!result)
+            System.out.println("\nYou have no tasks under that project on your ToDoListy!");
+
+        return result;
     }
 
+    /**
+     * A method that finds all the tasks with same due date
+     *
+     * @return true if at least one task is found for inputted due date, false otherwise.
+     */
+    public boolean findTasksWithSameDueDate() {
+        boolean result = false;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):\"");
+        String usersDateInput = scanner.nextLine();
+
+        for (Task task : toDoList) {
+            if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
+                System.out.println(task);
+                result = true;
+            }
+        }
+
+        if (!result)
+            System.out.println("\nYou have no tasks due on that date!");
+
+        return result;
+    }
 
     /**
-     * @param choice a string holding a number, "1" for editing tasks's name, "2" for editing tasks's project,
+     * A method to display the contents of ArrayList
+     *
+     * @param choice a string holding a number, "1" for calling on a findTasksWithSameDueDate method,
+     *  "2" for calling on a findTasksBelongingToSameProject method.
+     */
+    public void showTasksByDateOrProject(String choice) {
+
+        if (choice.equals("1")) {
+            this.findTasksWithSameDueDate();
+
+        } else if (choice.equals("2")) {
+           this.findTasksBelongingToSameProject();
+        }
+    }
+
+    /**
+     * @param choice a string holding a number, "1" for editing task's name, "2" for editing task's project,
      *               "3" for editing task's due date
      *               The method calls on findTaskByName and stores the value in the Task object
      *               if Task object is not equal to null the method will prompt the user to enter a new value for a selected field.
@@ -230,7 +253,7 @@ public class ToDoList {
     /**
      * This method will write the data of Tasks from ArrayList to data file
      * @param filename a string specifying the full path and extension of data file,
-     * @return true if the writting operation was successful, otherwise false
+     * @return true if the writing operation was successful, otherwise false
      */
     public boolean writeToFile(String filename) {
         try {
