@@ -45,13 +45,12 @@ public class ToDoList {
      *
      * @return task when name is matching with user's input
      */
-    private Task findTaskByName() {
+    public Task findTaskByName() {
 
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
+        Scanner userInput = new Scanner(System.in);
 
         for (Task task : toDoList) {
-            if (task.getName().equalsIgnoreCase(userInput))
+            if (task.getName().equalsIgnoreCase(userInput.nextLine()))
                 return task;
         }
         System.err.println("You don't have a task with that name.");
@@ -84,11 +83,10 @@ public class ToDoList {
      * A method to display the contents of ArrayList
      *
      * @param choice a string holding a number, "1" for sorting by due date, "2" for sorting by project
-     *               The method will print a statement that it couldn't find a task if there is no match with user's input
+     * The method will print a statement that it couldn't find a task if there is no match with user's input
      */
     public void showTasksByDateOrProject(String choice) {
         Scanner userInput = new Scanner(System.in);
-        int hitsCounter = 0;
 
         if (choice.equals("1")) {
             System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):");
@@ -97,24 +95,30 @@ public class ToDoList {
             for (Task task : toDoList) {
                 if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
                     System.out.println(task);
-                    hitsCounter++;
                 }
             }
 
         } else if (choice.equals("2")) {
-            System.out.println("\nPlease enter a project name:");
-            String usersProjectInput = userInput.nextLine();
+           this.showTasksByProject();
+        }
+    }
 
-            for (Task task : toDoList) {
-                if (task.getProject().equalsIgnoreCase(usersProjectInput)) {
-                    System.out.println(task);
-                    hitsCounter++;
-                }
+    public void showTasksByProject() {
+        int hits = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nPlease enter a project name:");
+        String usersDateInput = scanner.nextLine();
+
+        for (Task task : toDoList) {
+            if (task.getProject().equalsIgnoreCase(usersDateInput)) {
+                System.out.println(task);
+                hits++;
             }
         }
 
-        if (hitsCounter == 0 && (choice.equals("1") || choice.equals("2")))
-            System.out.println("\nNo tasks found for that " + (choice.equals("1") ? "due date" : "project") + "!");
+        if (hits == 0)
+            System.out.println("There is no tasks under that project on your ToDoLisy");
     }
 
 
