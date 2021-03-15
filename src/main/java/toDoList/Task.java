@@ -31,33 +31,60 @@ public class Task implements Serializable {
      * @return a String containing the title of a task
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
      * A method to set the title of a Task object
-     * @param name A String that holds the title of a task and it cannot be empty or null.
-     * @throws NullPointerException if title is null or empty string
+     * @param name A String that holds the name of a task and it cannot be empty.
+     * @throws NullPointerException if name is an empty string
      */
     public void setName(String name) throws NullPointerException {
         if (name.trim().equals("")) {
-            throw new NullPointerException("REQUIRED: Name can't be empty.");
+            throw new NullPointerException("Name can't be empty.");
         }
         this.name = name;
     }
 
     /**
-     * @return task's project.
+     * A method to get the project of a task
+     * @return a String containing the project field
      */
     public String getProject() {
-        return project;
+        return this.project;
     }
 
     /**
-     * @return task's dueDate.
+     * A method to set the project field
+     * @param project A String that holds the name of project associated with task.
+     */
+    public void setProject(String project) {
+        if (project.trim().equals("")) {
+            throw new NullPointerException("Project can't be empty.");
+        }
+        this.project = project;
+    }
+
+    /**
+     * A method to get the due date of the task
+     * @return the due date of task as LocalDate object
      */
     public LocalDate getDueDate() {
         return dueDate;
+    }
+
+    /**
+     * A method to set the due date of a task
+     * @param dueDate The object of LocalDate
+     * @throws DateTimeException if given date is a past date
+     */
+    public void setDueDate(LocalDate dueDate) throws DateTimeException {
+
+        // Throw DateTimeException if past date is given
+        if (dueDate.compareTo(LocalDate.now()) < 0) {
+            throw new DateTimeException("You entered the date in the past!");
+        }
+        this.dueDate = dueDate;
     }
 
     /**
@@ -65,20 +92,6 @@ public class Task implements Serializable {
      */
     public boolean status() {
         return status;
-    }
-
-    /**
-     * Setts a task's dueDate.
-     */
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    /**
-     * Setts a task's project.
-     */
-    public void setProject(String project) {
-        this.project = project;
     }
 
     /**
