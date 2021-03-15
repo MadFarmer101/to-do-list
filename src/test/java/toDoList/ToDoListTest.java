@@ -117,7 +117,7 @@ public class ToDoListTest {
      * a user is trying to remove a task when a name doesn't match with his input.
      */
     @Test
-    public void userGetsAnErrorMessageWhenRemovingATaskWhenNameInputDoesntMatch() {
+    public void methodReturnsFalseWhenRemovingATaskWhenNameInputDoesntMatch() {
         String input = "task4";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
@@ -125,9 +125,25 @@ public class ToDoListTest {
         assertFalse(toDoLy.removeTask());
     }
 
-
+    /**
+     * Assert that true is returned
+     * when user's input is matching with task's project.
+     */
     @Test
-    public void userGetsErrMsgWhenNoTasksHasThatProject() {
+    public void successfullyListsTasksUnderSameProject() {
+        String input = "project2";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        assertTrue(toDoLy.findTasksBelongingToSameProject());
+    }
+
+    /**
+     * Assert that true correct message is shown
+     * when there are no tasks matching with project from user's input
+     */
+    @Test
+    public void userGetsErrMsgWhenNoTasksAreFoundUnderThatProject() {
         String input = "project450";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
@@ -135,7 +151,7 @@ public class ToDoListTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        String expectedOutput = "\nPlease enter a project name:\n\nNo tasks found for that project!" + System.getProperty("line.separator");
+        String expectedOutput = "\nPlease enter a project name:\n\nYou have no tasks under that project on your ToDoListy!" + System.getProperty("line.separator");
 
         toDoLy.showTasksByDateOrProject("2");
 
