@@ -14,6 +14,8 @@ import java.util.Scanner;
  * @since 2021-03-11
  **/
 public class App {
+    public static String filename = "todolisty.obj";
+
 
     /**
      * main method to run the command line based "ToDoList" application
@@ -25,6 +27,8 @@ public class App {
         String choice = "0";
 
         try {
+            toDoListy.readFromFile(filename);
+
             Scanner userInput = new Scanner(System.in);
 
             while (!choice.equals("6")) {
@@ -58,7 +62,10 @@ public class App {
                 }
             }
 
-            System.out.println("\nBye, Bye");
+            toDoListy.writeToFile(filename);
+
+            System.out.println("\nYour ToDoListy is saved! Bye, Bye...");
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println(Arrays.toString(e.getStackTrace()));

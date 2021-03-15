@@ -1,5 +1,8 @@
 package toDoList;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,7 +16,7 @@ import java.util.Scanner;
  **/
 
 public class ToDoList {
-    private final ArrayList<Task> toDoList = new ArrayList<>();
+    private ArrayList<Task> toDoList = new ArrayList<>();
 
     /**
      * @return toDoList.
@@ -217,6 +220,56 @@ public class ToDoList {
             System.out.println("\n>>>TO DO LIST:");
         for (Task task : toDoList) {
             System.out.println(task);
+        }
+    }
+
+    /**
+     * This method will write the data of Tasks from ArrayList to data file
+     * @param filename a string specifying the full path and extension of data file,
+     * @return true if the writting operation was successful, otherwise false
+     */
+    public boolean writeToFile(String filename) {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(filename);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            objectOutputStream.writeObject(toDoList);
+
+            objectOutputStream.close();
+            fileOutputStream.close();
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * This method will read the data file from disk which will contain the data of previously saved tasks
+     * @param filename a string specifying the full path and extension of data file
+     * @return true if the reading operation was successful, otherwise false
+     */
+    public boolean readFromFile(String filename) {
+
+        try {
+            if (!Files.isReadable(Paths.get(filename))) {
+                System.out.println(filename + " does not exists!");
+                return false;
+            }
+
+            FileInputStream fileInputStream = new FileInputStream(filename);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            toDoList = (ArrayList<Task>) objectInputStream.readObject();
+
+            objectInputStream.close();
+            fileInputStream.close();
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
 
