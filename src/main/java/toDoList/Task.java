@@ -117,13 +117,13 @@ public class Task implements Serializable {
     public void createTask() {
         Scanner userInput = new Scanner(System.in);
 
-        System.out.println("Name: ");
+        System.out.println("\nPlease enter Task's Name: ");
         this.setName(userInput.nextLine());
 
-        System.out.println("Project: ");
+        System.out.println("Please enter Task's Project: ");
         this.setProject(userInput.nextLine());
 
-        System.out.println("Due Date (YYYY-MM-DD): ");
+        System.out.println("Please enter Task's Due Date (YYYY-MM-DD): ");
         this.setDueDate(LocalDate.parse(userInput.nextLine()));
     }
 

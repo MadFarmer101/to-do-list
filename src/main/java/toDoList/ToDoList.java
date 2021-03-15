@@ -81,12 +81,11 @@ public class ToDoList {
 
     /**
      * A method that finds all the tasks with under same project
-     *
-     * @return true if at least one task is found for inputted project, false otherwise.
+     * and prints them on the screen.
      */
-    public boolean findTasksBelongingToSameProject() {
-        boolean result = false;
+    public void showTasksBelongingToSameProject() {
         Scanner scanner = new Scanner(System.in);
+        int hits = 0;
 
         System.out.println("\nPlease enter a project name:");
         String usersDateInput = scanner.nextLine();
@@ -94,24 +93,24 @@ public class ToDoList {
         for (Task task : toDoList) {
             if (task.getProject().equalsIgnoreCase(usersDateInput)) {
                 System.out.println(task);
-                result = true;
+                hits++;
             }
         }
 
-        if (!result)
+        if (hits == 0)
             System.out.println("\nYou have no tasks under that project on your ToDoListy!");
+        else
+            System.out.println("\nYou have " + hits + " task" + (hits == 1 ? "" : "s") + " on your list!");
 
-        return result;
     }
 
     /**
      * A method that finds all the tasks with same due date
-     *
-     * @return true if at least one task is found for inputted due date, false otherwise.
+     * and prints them on the screen.
      */
-    public boolean findTasksWithSameDueDate() {
-        boolean result = false;
+    public void showTasksWithSameDueDate() {
         Scanner scanner = new Scanner(System.in);
+        int hits = 0;
 
         System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):\"");
         String usersDateInput = scanner.nextLine();
@@ -119,29 +118,29 @@ public class ToDoList {
         for (Task task : toDoList) {
             if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
                 System.out.println(task);
-                result = true;
+                hits++;
             }
         }
 
-        if (!result)
-            System.out.println("\nYou have no tasks due on that date!");
-
-        return result;
+        if (hits == 0)
+            System.out.println("\nYou have no tasks for that due date!");
+        else
+            System.out.println("\nYou have " + hits + " task" + (hits == 1 ? "" : "s") + " on your list!");
     }
 
     /**
      * A method to display the contents of ArrayList
      *
      * @param choice a string holding a number, "1" for calling on a findTasksWithSameDueDate method,
-     *  "2" for calling on a findTasksBelongingToSameProject method.
+     *               "2" for calling on a findTasksBelongingToSameProject method.
      */
     public void showTasksByDateOrProject(String choice) {
 
         if (choice.equals("1")) {
-            this.findTasksWithSameDueDate();
+            this.showTasksWithSameDueDate();
 
         } else if (choice.equals("2")) {
-           this.findTasksBelongingToSameProject();
+            this.showTasksBelongingToSameProject();
         }
     }
 
@@ -252,6 +251,7 @@ public class ToDoList {
 
     /**
      * This method will write the data of Tasks from ArrayList to data file
+     *
      * @param filename a string specifying the full path and extension of data file,
      * @return true if the writing operation was successful, otherwise false
      */
@@ -274,6 +274,7 @@ public class ToDoList {
 
     /**
      * This method will read the data file from disk which will contain the data of previously saved tasks
+     *
      * @param filename a string specifying the full path and extension of data file
      * @return true if the reading operation was successful, otherwise false
      */
