@@ -52,7 +52,7 @@ public class App {
                     }
                     case "5" -> {
                         toDoListy.showFormattedList();
-                        Menus.editTaskMenu();
+                        Menus.showEditTaskMenu();
                         toDoListy.editTask(userInput.nextLine());
                     }
                     case "6" -> {

@@ -1,11 +1,11 @@
 package toDoList;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -126,54 +126,67 @@ public class ToDoListTest {
     }
 
     /**
-     * Assert that true is returned
-     * when user's input is matching with task's project.
-     */
-//    @Test
-//    public void successfullyListsTasksUnderSameProject() {
-//        String input = "project2";
-//        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-//        System.setIn(inputStream);
-//
-//        assertTrue(toDoLy.showTasksBelongingToSameProject());
-//    }
-
-    /**
-     * Assert that true correct message is shown
-     * when there are no tasks matching with project from user's input
+     * Assert that list has a correct size
+     * of tasks objects with same project.
      */
     @Test
-    public void userGetsErrMsgWhenNoTasksAreFoundUnderThatProject() {
-        String input = "project450";
+    public void checksForCorrectListSizeOnTasksWithSameProject() {
+        String input = "project1";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        ArrayList<Task> tasksWitSameProject = toDoLy.findTasksUnderSameProject();
 
-        String expectedOutput = "\nPlease enter a project name:\n\nYou have no tasks under that project on your ToDoListy!" + System.getProperty("line.separator");
-
-        toDoLy.showTasksByDateOrProject("2");
-
-        assertEquals(expectedOutput, outputStream.toString());
-
+        assertEquals(2, tasksWitSameProject.size());
     }
 
 
+    /**
+     * Assert that returned list is empty
+     * when project from user's input doesn't match
+     * with any of the project from tasks on the list.
+     */
     @Test
-    public void userGetsMsgWhenNoTasksHasThatDueDate() {
-        String input = "2021-04-16";
+    public void checkThatListIsEmptyIfThereIsNoTasksUnderInputtedProject() {
+        String input = "project120";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        ArrayList<Task> tasksWitSameProject = toDoLy.findTasksUnderSameProject();
 
-        String expectedOutput = "\nPlease enter a Due Date (YYYY-MM-DD):\n\nNo tasks found for that due date!" + System.getProperty("line.separator");
+        assertTrue(tasksWitSameProject.isEmpty());
+    }
 
-        toDoLy.showTasksByDateOrProject("1");
+    /**
+     * Assert that list has a correct size
+     * of tasks objects with same due date.
+     */
+    @Test
+    public void checksForCorrectListSizeOnTasksWithSameDueDate() {
+        String input = "2021-04-15";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
 
-        assertEquals(expectedOutput, outputStream.toString());
+        ArrayList<Task> tasksWitSameDueDate = toDoLy.findTasksWithSameDueDate();
+
+        assertEquals(2, tasksWitSameDueDate.size());
+    }
+
+
+    /**
+     * Assert that returned list is empty
+     * when due date from user's input doesn't match
+     * with any of the due dates from tasks on the list.
+     */
+    @Test
+    public void checkThatListIsEmptyWhenThereAreNoTasksWithInputtedDueDate() {
+        String input = "project120";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        ArrayList<Task> tasksWitSameDueDate = toDoLy.findTasksWithSameDueDate();
+
+        assertTrue(tasksWitSameDueDate.isEmpty());
     }
 
     @Test
@@ -186,7 +199,7 @@ public class ToDoListTest {
     }
 
     @Test
-    public void returnsFalseWhenTaskisAlreadyMarkedDone() {
+    public void returnsFalseWhenTaskIsAlreadyMarkedDone() {
         String input = "task1";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
