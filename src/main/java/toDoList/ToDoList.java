@@ -47,10 +47,11 @@ public class ToDoList {
      */
     public Task findTaskByName() {
 
-        Scanner userInput = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
 
         for (Task task : toDoList) {
-            if (task.getName().equalsIgnoreCase(userInput.nextLine()))
+            if (task.getName().equalsIgnoreCase(userInput))
                 return task;
         }
         System.err.println("You don't have a task with that name.");
@@ -261,11 +262,11 @@ public class ToDoList {
 
     /**
      * This method will write the data of Tasks from ArrayList to data file
-     * If writing is not successfull it'll catch an exception
+     * If writing is not successful it'll catch an exception
      *
      * @param filename a string specifying the full path and extension of data file,
      */
-    public boolean writeToFile(String filename) {
+    public void writeToFile(String filename) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(filename);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -274,27 +275,23 @@ public class ToDoList {
 
             objectOutputStream.close();
             fileOutputStream.close();
-            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
         }
     }
 
     /**
      * This method will read the data file from disk which will contain the data of previously saved tasks
-     * If writing is not successfull it'll catch an exception
+     * If writing is not successful it'll catch an exception
      *
      * @param filename a string specifying the full path and extension of data file
      */
-    public boolean readFromFile(String filename) {
+    public void readFromFile(String filename) {
 
         try {
             if (!Files.isReadable(Paths.get(filename))) {
-                System.out.println(filename + " does not exists!");
-                return false;
-            }
+                System.out.println(filename + " does not exists!"); }
 
             FileInputStream fileInputStream = new FileInputStream(filename);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -303,11 +300,9 @@ public class ToDoList {
 
             objectInputStream.close();
             fileInputStream.close();
-            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
         }
     }
 

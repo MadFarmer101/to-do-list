@@ -90,9 +90,16 @@ public class ToDoListTest {
      */
     @Test
     public void userSuccessfullyRemovesTask() {
-        String input = "task2";
+        // Add a task that is to be removed from the list
+        String input = "taskToBeRemoved\nproject1\n2021-05-03";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+
         System.setIn(inputStream);
+        toDoLy.addTask();
+
+        String input2 = "taskToBeRemoved";
+        InputStream inputStream2 = new ByteArrayInputStream(input2.getBytes());
+        System.setIn(inputStream2);
 
         assertTrue(toDoLy.removeTask());
     }
@@ -103,13 +110,20 @@ public class ToDoListTest {
      */
     @Test
     public void checksForCorrectListSizeAfterTaskIsRemovedFromAList() {
-        String input = "task2";
+        // Add a task that is to be removed from the list
+        String input = "taskToBeRemoved\nproject1\n2021-05-03";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+
         System.setIn(inputStream);
+        toDoLy.addTask();
+
+        String input2 = "taskToBeRemoved";
+        InputStream inputStream2 = new ByteArrayInputStream(input2.getBytes());
+        System.setIn(inputStream2);
 
         toDoLy.removeTask();
 
-        assertEquals(2, toDoLy.getToDoList().size());
+        assertEquals(3, toDoLy.getToDoList().size());
     }
 
     /**
@@ -190,11 +204,12 @@ public class ToDoListTest {
     }
 
     /**
-     * Assert that true is returned
+     * Assert that true is returned when
      * task is marked as done on the ToDoList.
      */
     @Test
     public void returnsTrueWhenTaskIsSuccessfullyMarkedAsDone() {
+
         String input = "task2";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
@@ -202,6 +217,11 @@ public class ToDoListTest {
         assertTrue(toDoLy.markTaskAsDoneOnTheList());
     }
 
+    /**
+     * Assert that false is returned when
+     * when user tries to mark a task as done
+     * that is already marked as done.
+     */
     @Test
     public void returnsFalseWhenTaskIsAlreadyMarkedDone() {
         String input = "task1";
@@ -217,11 +237,19 @@ public class ToDoListTest {
         assertFalse(toDoLy.markTaskAsDoneOnTheList());
     }
 
+    /**
+     * Assert that there are correct number of
+     * tasks that are marked as done on the list.
+     */
     @Test
     public void checkCompletedTaskCount() {
-        assertEquals(2, toDoLy.completedTasksCount());
+        assertEquals(1, toDoLy.completedTasksCount());
     }
 
+    /**
+     * Assert that there are correct number of
+     * tasks that are not marked as done on the list.
+     */
     @Test
     public void checkNotCompletedTaskCount() {
         assertEquals(3, toDoLy.notCompletedTasksCount());
