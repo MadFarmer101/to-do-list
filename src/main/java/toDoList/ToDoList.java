@@ -83,25 +83,22 @@ public class ToDoList {
      * A method that finds all the tasks with under same project
      * and prints them on the screen.
      */
-    public void showTasksBelongingToSameProject() {
+    public ArrayList<Task> findTasksUnderSameProject() {
         Scanner scanner = new Scanner(System.in);
-        int hits = 0;
+        ArrayList<Task> tasksUnderSameProject = new ArrayList<>();
 
         System.out.println("\nPlease enter a project name:");
         String usersDateInput = scanner.nextLine();
 
         for (Task task : toDoList) {
             if (task.getProject().equalsIgnoreCase(usersDateInput)) {
-                System.out.println(task);
-                hits++;
+                tasksUnderSameProject.add(task);
             }
         }
 
-        if (hits == 0)
+        if (tasksUnderSameProject.isEmpty())
             System.out.println("\nYou have no tasks under that project on your ToDoListy!");
-        else
-            System.out.println("\nYou have " + hits + " task" + (hits == 1 ? "" : "s") + " on your list!");
-
+        return tasksUnderSameProject;
     }
 
     /**
@@ -131,17 +128,21 @@ public class ToDoList {
     /**
      * A method to display the contents of ArrayList
      *
-     * @param choice a string holding a number, "1" for calling on a findTasksWithSameDueDate method,
+     * @param userChoice a string holding a number, "1" for calling on a findTasksWithSameDueDate method,
      *               "2" for calling on a findTasksBelongingToSameProject method.
      */
-    public void showTasksByDateOrProject(String choice) {
+    public void showTasksByDateOrProject(String userChoice) {
+        ArrayList<Task> sortedTasks;
 
-        if (choice.equals("1")) {
+        if (userChoice.equals("1")) {
             this.showTasksWithSameDueDate();
 
-        } else if (choice.equals("2")) {
-            this.showTasksBelongingToSameProject();
-        }
+        } else if (userChoice.equals("2")) {
+            sortedTasks = this.findTasksUnderSameProject();
+            for (Task task : sortedTasks)
+                System.out.println(task);
+        } else
+        System.out.println("Returning to Main Menu...");
     }
 
     /**
