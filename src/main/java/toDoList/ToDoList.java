@@ -265,7 +265,7 @@ public class ToDoList {
      *
      * @param filename a string specifying the full path and extension of data file,
      */
-    public void writeToFile(String filename) {
+    public boolean writeToFile(String filename) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(filename);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -274,9 +274,11 @@ public class ToDoList {
 
             objectOutputStream.close();
             fileOutputStream.close();
+            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
@@ -286,11 +288,12 @@ public class ToDoList {
      *
      * @param filename a string specifying the full path and extension of data file
      */
-    public void readFromFile(String filename) {
+    public boolean readFromFile(String filename) {
 
         try {
             if (!Files.isReadable(Paths.get(filename))) {
                 System.out.println(filename + " does not exists!");
+                return false;
             }
 
             FileInputStream fileInputStream = new FileInputStream(filename);
@@ -300,9 +303,11 @@ public class ToDoList {
 
             objectInputStream.close();
             fileInputStream.close();
+            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 

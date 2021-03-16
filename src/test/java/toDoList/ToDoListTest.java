@@ -189,6 +189,10 @@ public class ToDoListTest {
         assertTrue(tasksWitSameDueDate.isEmpty());
     }
 
+    /**
+     * Assert that true is returned
+     * task is marked as done on the ToDoList.
+     */
     @Test
     public void returnsTrueWhenTaskIsSuccessfullyMarkedAsDone() {
         String input = "task2";
