@@ -161,7 +161,7 @@ public class ToDoList {
      *               The method calls on findTaskByName and stores the value in the Task object
      *               if Task object is not equal to null the method will prompt the user to enter a new value for a selected field.
      */
-    public void editTask(String choice) {
+    public void editTask(String choice, Scanner usersInput2) {
 
         if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
 
@@ -175,7 +175,7 @@ public class ToDoList {
                 switch (choice) {
                     case "1" -> {
                         System.out.println("Please enter new name:");
-                        task.setName(userInput.nextLine());
+                        task.setName(usersInput2.nextLine());
                         System.out.println("\nTask's name is successfully changed");
                     }
                     case "2" -> {

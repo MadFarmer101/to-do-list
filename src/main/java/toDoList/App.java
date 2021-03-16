@@ -53,7 +53,7 @@ public class App {
                     case "5" -> {
                         toDoListy.showFormattedList();
                         Menus.showEditTaskMenu();
-                        toDoListy.editTask(userInput.nextLine());
+                        toDoListy.editTask(userInput.nextLine(), userInput);
                     }
                     case "6" -> {
                     }

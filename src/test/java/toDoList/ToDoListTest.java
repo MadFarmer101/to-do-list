@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -253,6 +254,19 @@ public class ToDoListTest {
     @Test
     public void checkNotCompletedTaskCount() {
         assertEquals(3, toDoLy.notCompletedTasksCount());
+    }
+
+    @Test
+    public void userSuccessfullyEditsTaskName() {
+        String input = "task1";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        Scanner newName = new Scanner("new task1");
+
+        toDoLy.editTask("1", newName);
+
+        assertEquals("new task1", toDoLy.getToDoList().get(0).getName());
     }
 
 }
