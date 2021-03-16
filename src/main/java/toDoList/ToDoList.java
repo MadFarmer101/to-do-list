@@ -156,42 +156,44 @@ public class ToDoList {
     }
 
     /**
-     * @param choice a string holding a number, "1" for editing task's name, "2" for editing task's project,
-     *               "3" for editing task's due date
-     *               The method calls on findTaskByName and stores the value in the Task object
-     *               if Task object is not equal to null the method will prompt the user to enter a new value for a selected field.
+     * A method that sets new values to task's fields
+     *
+     * @param userChoice a string holding a number, "1" for editing task's name, "2" for editing task's project,
+     *               "3" for editing task's due date.
+     *
+     * @param newValue a Scanner object which will set the new value
+     *                 of the task's name, project or due date according to user's input.
      */
-    public void editTask(String choice, Scanner usersInput2) {
+    public void editTask(String userChoice, Scanner newValue) {
 
-        if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
+        if (userChoice.equals("1") || userChoice.equals("2") || userChoice.equals("3")) {
 
             System.out.println("Please enter a name of a task you would like to edit:");
 
             Task task = this.findTaskByName();
-            Scanner userInput = new Scanner(System.in);
 
             if (task != null) {
 
-                switch (choice) {
+                switch (userChoice) {
                     case "1" -> {
                         System.out.println("Please enter new name:");
-                        task.setName(usersInput2.nextLine());
+                        task.setName(newValue.nextLine());
                         System.out.println("\nTask's name is successfully changed");
                     }
                     case "2" -> {
                         System.out.println("Please enter new project:");
-                        task.setProject(userInput.nextLine());
+                        task.setProject(newValue.nextLine());
                         System.out.println("\nTask's project is successfully changed");
                     }
                     case "3" -> {
                         System.out.println("Please enter new due date:");
-                        task.setDueDate(LocalDate.parse(userInput.nextLine()));
+                        task.setDueDate(LocalDate.parse(newValue.nextLine()));
                         System.out.println("\nTask's Due Date is successfully changed");
                     }
                 }
             }
         }
-        System.out.println("\nReturning to Main Menu!");
+        System.out.println("\nReturning to Main Menu...");
     }
 
     /**

@@ -256,17 +256,56 @@ public class ToDoListTest {
         assertEquals(3, toDoLy.notCompletedTasksCount());
     }
 
+    /**
+     * Assert that task's project is successfully edited
+     * with user's input.
+     */
     @Test
-    public void userSuccessfullyEditsTaskName() {
+    public void userSuccessfullyEditsTaskProject() {
+
+        String input = "task2";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        Scanner newProject = new Scanner("new project2");
+
+        toDoLy.editTask("2", newProject);
+
+        assertEquals("new project2", toDoLy.getToDoList().get(1).getProject());
+    }
+
+    /**
+     * Assert that task's due date is successfully edited
+     * with user's input.
+     */
+    @Test
+    public void userSuccessfullyEditsTaskDueDate() {
         String input = "task1";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
-        Scanner newName = new Scanner("new task1");
+        Scanner newDueDate = new Scanner("2022-06-06");
+
+        toDoLy.editTask("3", newDueDate);
+
+        assertEquals("2022-06-06", toDoLy.getToDoList().get(0).getDueDate().toString());
+    }
+
+    /**
+     * Assert that task's name is successfully edited
+     * with user's input.
+     */
+    @Test
+    public void userSuccessfullyEditsTaskName() {
+        String input = "task3";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
+
+        Scanner newName = new Scanner("new task3");
 
         toDoLy.editTask("1", newName);
 
-        assertEquals("new task1", toDoLy.getToDoList().get(0).getName());
+        assertEquals("new task3", toDoLy.getToDoList().get(2).getName());
     }
 
 }
