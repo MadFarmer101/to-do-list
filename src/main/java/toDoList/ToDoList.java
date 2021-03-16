@@ -261,11 +261,11 @@ public class ToDoList {
 
     /**
      * This method will write the data of Tasks from ArrayList to data file
+     * If writing is not successfull it'll catch an exception
      *
      * @param filename a string specifying the full path and extension of data file,
-     * @return true if the writing operation was successful, otherwise false
      */
-    public boolean writeToFile(String filename) {
+    public void writeToFile(String filename) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(filename);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -274,26 +274,23 @@ public class ToDoList {
 
             objectOutputStream.close();
             fileOutputStream.close();
-            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
         }
     }
 
     /**
      * This method will read the data file from disk which will contain the data of previously saved tasks
+     * If writing is not successfull it'll catch an exception
      *
      * @param filename a string specifying the full path and extension of data file
-     * @return true if the reading operation was successful, otherwise false
      */
-    public boolean readFromFile(String filename) {
+    public void readFromFile(String filename) {
 
         try {
             if (!Files.isReadable(Paths.get(filename))) {
                 System.out.println(filename + " does not exists!");
-                return false;
             }
 
             FileInputStream fileInputStream = new FileInputStream(filename);
@@ -303,11 +300,9 @@ public class ToDoList {
 
             objectInputStream.close();
             fileInputStream.close();
-            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
         }
     }
 
