@@ -80,10 +80,13 @@ public class ToDoList {
     }
 
     /**
-     * A method that finds all the tasks with under same project
-     * and prints them on the screen.
+     * A method that finds all the tasks with same project
+     * field and adds them to an tasksUnderSameProject array list
+     *
+     * @return tasksUnderSameProject populated with task's with same project.
      */
     public ArrayList<Task> findTasksUnderSameProject() {
+
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasksUnderSameProject = new ArrayList<>();
 
@@ -97,45 +100,51 @@ public class ToDoList {
         }
 
         if (tasksUnderSameProject.isEmpty())
-            System.out.println("\nYou have no tasks under that project on your ToDoListy!");
+            System.out.println("\nYou have no tasks under that project on your ToDoListy...");
+
         return tasksUnderSameProject;
     }
 
     /**
      * A method that finds all the tasks with same due date
-     * and prints them on the screen.
+     * field and adds them to an findTasksWithSameDueDate array list
+     *
+     * @return findTasksWithSameDueDate populated with task's with same due date.
      */
-    public void showTasksWithSameDueDate() {
-        Scanner scanner = new Scanner(System.in);
-        int hits = 0;
+    public ArrayList<Task> findTasksWithSameDueDate() {
 
-        System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):\"");
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Task> tasksWithSameDueDate = new ArrayList<>();
+
+        System.out.println("\nPlease enter a due date (YYYY-MM-DD):");
         String usersDateInput = scanner.nextLine();
 
         for (Task task : toDoList) {
             if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
-                System.out.println(task);
-                hits++;
+                tasksWithSameDueDate.add(task);
             }
         }
 
-        if (hits == 0)
-            System.out.println("\nYou have no tasks for that due date!");
-        else
-            System.out.println("\nYou have " + hits + " task" + (hits == 1 ? "" : "s") + " on your list!");
+        if (tasksWithSameDueDate.isEmpty())
+            System.out.println("\nYou have no tasks with that due date on your ToDoListy...");
+
+        return tasksWithSameDueDate;
     }
 
     /**
-     * A method to display the contents of ArrayList
+     * A method displays the contents of sorted ArrayList with
+     * tasks with same project, or same due date depending on user's choice
      *
      * @param userChoice a string holding a number, "1" for calling on a findTasksWithSameDueDate method,
-     *               "2" for calling on a findTasksBelongingToSameProject method.
+     * "2" for calling on a findTasksBelongingToSameProject method.
      */
     public void showTasksByDateOrProject(String userChoice) {
         ArrayList<Task> sortedTasks;
 
         if (userChoice.equals("1")) {
-            this.showTasksWithSameDueDate();
+            sortedTasks = this.findTasksWithSameDueDate();
+            for (Task task : sortedTasks)
+                System.out.println(task);
 
         } else if (userChoice.equals("2")) {
             sortedTasks = this.findTasksUnderSameProject();
