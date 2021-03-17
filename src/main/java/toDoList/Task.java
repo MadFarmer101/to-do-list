@@ -99,7 +99,7 @@ public class Task implements Serializable {
      *
      * @return true: if the task is marked as done, otherwise it will return false
      */
-    public boolean status() {
+    public boolean getStatus() {
         return status;
     }
 

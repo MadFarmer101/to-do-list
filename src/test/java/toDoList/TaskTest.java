@@ -66,7 +66,7 @@ public class TaskTest {
      */
     @Test
     void statusIsFalseWhenTaskIsCreated() {
-        assertFalse(task.status());
+        assertFalse(task.getStatus());
     }
 
     /**
@@ -76,7 +76,7 @@ public class TaskTest {
     @Test
     void statusIsTrueWhenTaskIsMarkedAsDone() {
         task.markAsDone();
-        assertTrue(task.status());
+        assertTrue(task.getStatus());
     }
 
     /**

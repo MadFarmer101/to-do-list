@@ -92,10 +92,10 @@ public class ToDoList {
         ArrayList<Task> tasksUnderSameProject = new ArrayList<>();
 
         System.out.println("\nPlease enter a project name:");
-        String usersDateInput = scanner.nextLine();
+        String userProjectInput = scanner.nextLine();
 
         for (Task task : toDoList) {
-            if (task.getProject().equalsIgnoreCase(usersDateInput)) {
+            if (task.getProject().equalsIgnoreCase(userProjectInput)) {
                 tasksUnderSameProject.add(task);
             }
         }
@@ -205,7 +205,7 @@ public class ToDoList {
         int count = 0;
 
         for (Task task : toDoList) {
-            if (task.status()) {
+            if (task.getStatus()) {
                 count++;
             }
         }
@@ -221,7 +221,7 @@ public class ToDoList {
         int count = 0;
 
         for (Task task : toDoList) {
-            if (!task.status()) {
+            if (!task.getStatus()) {
                 count++;
             }
         }
@@ -239,7 +239,7 @@ public class ToDoList {
 
         Task task = this.findTaskByName();
 
-        if (!task.status()) {
+        if (!task.getStatus()) {
             task.markAsDone();
             System.out.println("\nTask is successfully marked as done!");
             return true;
