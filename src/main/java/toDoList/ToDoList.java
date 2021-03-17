@@ -81,80 +81,119 @@ public class ToDoList {
     }
 
     /**
-     * A method to display the contents of ArrayList
+     * A method that finds all the tasks with same project
+     * field and adds them to an tasksUnderSameProject array list
      *
-     * @param choice a string holding a number, "1" for sorting by due date, "2" for sorting by project
-     *               The method will print a statement that it couldn't find a task if there is no match with user's input
+     * @return tasksUnderSameProject populated with task's with same project.
      */
-    public void showTasksByDateOrProject(String choice) {
-        Scanner userInput = new Scanner(System.in);
-        int hitsCounter = 0;
+    public ArrayList<Task> findTasksUnderSameProject() {
 
-        if (choice.equals("1")) {
-            System.out.println("\nPlease enter a Due Date (YYYY-MM-DD):");
-            String usersDateInput = userInput.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Task> tasksUnderSameProject = new ArrayList<>();
 
-            for (Task task : toDoList) {
-                if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
-                    System.out.println(task);
-                    hitsCounter++;
-                }
-            }
+        System.out.println("\nPlease enter a project name:");
+        String userProjectInput = scanner.nextLine();
 
-        } else if (choice.equals("2")) {
-            System.out.println("\nPlease enter a project name:");
-            String usersProjectInput = userInput.nextLine();
-
-            for (Task task : toDoList) {
-                if (task.getProject().equalsIgnoreCase(usersProjectInput)) {
-                    System.out.println(task);
-                    hitsCounter++;
-                }
+        for (Task task : toDoList) {
+            if (task.getProject().equalsIgnoreCase(userProjectInput)) {
+                tasksUnderSameProject.add(task);
             }
         }
 
-        if (hitsCounter == 0 && (choice.equals("1") || choice.equals("2")))
-            System.out.println("\nNo tasks found for that " + (choice.equals("1") ? "due date" : "project") + "!");
+        if (tasksUnderSameProject.isEmpty())
+            System.out.println("\nYou have no tasks under that project on your ToDoListy...");
+
+        return tasksUnderSameProject;
     }
 
+    /**
+     * A method that finds all the tasks with same due date
+     * field and adds them to an findTasksWithSameDueDate array list
+     *
+     * @return findTasksWithSameDueDate populated with task's with same due date.
+     */
+    public ArrayList<Task> findTasksWithSameDueDate() {
+
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Task> tasksWithSameDueDate = new ArrayList<>();
+
+        System.out.println("\nPlease enter a due date (YYYY-MM-DD):");
+        String usersDateInput = scanner.nextLine();
+
+        for (Task task : toDoList) {
+            if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
+                tasksWithSameDueDate.add(task);
+            }
+        }
+
+        if (tasksWithSameDueDate.isEmpty())
+            System.out.println("\nYou have no tasks with that due date on your ToDoListy...");
+
+        return tasksWithSameDueDate;
+    }
 
     /**
-     * @param choice a string holding a number, "1" for editing tasks's name, "2" for editing tasks's project,
-     *               "3" for editing task's due date
-     *               The method calls on findTaskByName and stores the value in the Task object
-     *               if Task object is not equal to null the method will prompt the user to enter a new value for a selected field.
+     * A method displays the contents of sorted ArrayList with
+     * tasks with same project, or same due date depending on user's choice
+     *
+     * @param userChoice a string holding a number, "1" for calling on a findTasksWithSameDueDate method,
+     * "2" for calling on a findTasksBelongingToSameProject method.
      */
-    public void editTask(String choice) {
+    public void showTasksByDateOrProject(String userChoice) {
+        ArrayList<Task> sortedTasks;
 
-        if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {
+        if (userChoice.equals("1")) {
+            sortedTasks = this.findTasksWithSameDueDate();
+            for (Task task : sortedTasks)
+                System.out.println(task);
+
+        } else if (userChoice.equals("2")) {
+            sortedTasks = this.findTasksUnderSameProject();
+            for (Task task : sortedTasks)
+                System.out.println(task);
+        } else
+        System.out.println("Returning to Main Menu...");
+    }
+
+    /**
+     * A method that sets new values to task's fields
+     *
+     * @param userChoice a string holding a number, "1" for editing task's name, "2" for editing task's project,
+     *               "3" for editing task's due date.
+     *
+     * @param newValue a Scanner object which will set the new value
+     *                 of the task's name, project or due date according to user's input.
+     */
+    public void editTask(String userChoice, Scanner newValue) {
+
+        if (userChoice.equals("1") || userChoice.equals("2") || userChoice.equals("3")) {
 
             System.out.println("Please enter a name of a task you would like to edit:");
 
             Task task = this.findTaskByName();
-            Scanner userInput = new Scanner(System.in);
 
             if (task != null) {
 
-                switch (choice) {
+                switch (userChoice) {
                     case "1" -> {
                         System.out.println("Please enter new name:");
-                        task.setName(userInput.nextLine());
+                        task.setName(newValue.nextLine());
                         System.out.println("\nTask's name is successfully changed");
                     }
                     case "2" -> {
                         System.out.println("Please enter new project:");
-                        task.setProject(userInput.nextLine());
+                        task.setProject(newValue.nextLine());
                         System.out.println("\nTask's project is successfully changed");
                     }
                     case "3" -> {
                         System.out.println("Please enter new due date:");
-                        task.setDueDate(LocalDate.parse(userInput.nextLine()));
+                        task.setDueDate(LocalDate.parse(newValue.nextLine()));
                         System.out.println("\nTask's Due Date is successfully changed");
                     }
                 }
             }
         }
-        System.out.println("\nReturning to Main Menu!");
+        System.out.println("\nReturning to Main Menu...");
     }
 
     /**
@@ -166,7 +205,7 @@ public class ToDoList {
         int count = 0;
 
         for (Task task : toDoList) {
-            if (task.status()) {
+            if (task.getStatus()) {
                 count++;
             }
         }
@@ -182,7 +221,7 @@ public class ToDoList {
         int count = 0;
 
         for (Task task : toDoList) {
-            if (!task.status()) {
+            if (!task.getStatus()) {
                 count++;
             }
         }
@@ -200,7 +239,7 @@ public class ToDoList {
 
         Task task = this.findTaskByName();
 
-        if (!task.status()) {
+        if (!task.getStatus()) {
             task.markAsDone();
             System.out.println("\nTask is successfully marked as done!");
             return true;
@@ -225,10 +264,11 @@ public class ToDoList {
 
     /**
      * This method will write the data of Tasks from ArrayList to data file
+     * If writing is not successful it'll catch an exception
+     *
      * @param filename a string specifying the full path and extension of data file,
-     * @return true if the writting operation was successful, otherwise false
      */
-    public boolean writeToFile(String filename) {
+    public void writeToFile(String filename) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(filename);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -237,26 +277,23 @@ public class ToDoList {
 
             objectOutputStream.close();
             fileOutputStream.close();
-            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
         }
     }
 
     /**
      * This method will read the data file from disk which will contain the data of previously saved tasks
+     * If writing is not successful it'll catch an exception
+     *
      * @param filename a string specifying the full path and extension of data file
-     * @return true if the reading operation was successful, otherwise false
      */
-    public boolean readFromFile(String filename) {
+    public void readFromFile(String filename) {
 
         try {
             if (!Files.isReadable(Paths.get(filename))) {
-                System.out.println(filename + " does not exists!");
-                return false;
-            }
+                System.out.println(filename + " does not exists!"); }
 
             FileInputStream fileInputStream = new FileInputStream(filename);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -265,11 +302,9 @@ public class ToDoList {
 
             objectInputStream.close();
             fileInputStream.close();
-            return true;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
         }
     }
 

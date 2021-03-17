@@ -33,7 +33,7 @@ public class Menus {
      * This method displays the menu to show the options to edit task fields
      * according to user's selection
      */
-    public static void editTaskMenu() {
+    public static void showEditTaskMenu() {
         System.out.println("\n>> Edit Task Menu");
         System.out.println("\n>> Pick an option:");
         System.out.println(">>> 1) Edit Task's Name");

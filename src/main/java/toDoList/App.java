@@ -52,8 +52,8 @@ public class App {
                     }
                     case "5" -> {
                         toDoListy.showFormattedList();
-                        Menus.editTaskMenu();
-                        toDoListy.editTask(userInput.nextLine());
+                        Menus.showEditTaskMenu();
+                        toDoListy.editTask(userInput.nextLine(), userInput);
                     }
                     case "6" -> {
                     }
