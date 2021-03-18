@@ -41,19 +41,26 @@ public class App {
                         Menus.showListMenu();
                         toDoListy.showTasksByDateOrProject(userInput.nextLine());
                     }
-                    case "2" -> toDoListy.addTask();
+                    case "2" -> {
+                        toDoListy.addTask();
+                        toDoListy.showFormattedList();
+                    }
+
                     case "3" -> {
                         toDoListy.showFormattedList();
                         toDoListy.removeTask();
+                        toDoListy.showFormattedList();
                     }
                     case "4" -> {
                         toDoListy.showFormattedList();
                         toDoListy.markTaskAsDoneOnTheList();
+                        toDoListy.showFormattedList();
                     }
                     case "5" -> {
                         toDoListy.showFormattedList();
                         Menus.showEditTaskMenu();
                         toDoListy.editTask(userInput.nextLine(), userInput);
+                        toDoListy.showFormattedList();
                     }
                     case "6" -> {
                     }
