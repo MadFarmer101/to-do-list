@@ -186,7 +186,7 @@ public class ToDoList {
                         System.out.println("\nTask's project is successfully changed");
                     }
                     case "3" -> {
-                        System.out.println("Please enter new due date:");
+                        System.out.println("Please enter new due date (YYYY-MM-DD):");
                         task.setDueDate(LocalDate.parse(newValue.nextLine()));
                         System.out.println("\nTask's Due Date is successfully changed");
                     }
