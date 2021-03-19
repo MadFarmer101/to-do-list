@@ -27,13 +27,13 @@ To run this app
 
 * Support the ability to
     * Add task
-    * Edit task
+    * Edit task (Name, Project and Due Date)
     * Mark task as done
     * Remove task
     
 
 * Support a text-based user interface
-* Load and save task list to data file`
+* Load and save task list to data file
 
 ## Class Diagram
 ![Class Diagram](res/class-diagram.png)
@@ -164,11 +164,11 @@ MIT-license
 ## Acknowledgements
 ##### Kungliga Tekniska högskolan (KTH), Stockholm 
   - for giving out this assignment.
-#### Nour AlHuda Almajni TA at KTH 
+##### Nour AlHuda Almajni TA at KTH 
   - for the mentorship, directions regarding refactoring and video on writing to file.
-#### Kai Böhrnsen TA at KTH
+##### Kai Böhrnsen TA at KTH
   - for reviewing and providing guidelines to improve.
-#### Kwabena Asante-Poku at KTH 
+##### Kwabena Asante-Poku at KTH 
   - for demos on testing with JUnit.
 
 
