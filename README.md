@@ -14,22 +14,22 @@ To run this app
 ``` gradle run --console=plain```
 ## Basic features
 * Models a task with:
-    * Title
+    * Name
     * Due date
     * Status
-    * project
+    * Project
   
     
-* Display a collection of tasks that can be sorted
-    * By date
-    * By project
+* Display a list of tasks that can be sorted
+    * By Due date
+    * By Project
     
 
 * Support the ability to
     * Add task
     * Edit task
-    * Mark a task as done
-    * Remove tasks
+    * Mark task as done
+    * Remove task
     
 
 * Support a text-based user interface
@@ -159,9 +159,17 @@ In order for my list to be viable
 I shouldn't be able to set a due date in the past or have a task without a name
 ```
 
-
-
-
+## License
+MIT-license
+## Acknowledgements
+##### Kungliga Tekniska högskolan (KTH), Stockholm 
+  - for giving out this assignment.
+#### Nour AlHuda Almajni TA at KTH 
+  - for the mentorship, directions regarding refactoring and video on writing to file.
+#### Kai Böhrnsen TA at KTH
+  - for reviewing and providing guidelines to improve.
+#### Kwabena Asante-Poku at KTH 
+  - for demos on testing with JUnit.
 
 
 
