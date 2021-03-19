@@ -8,10 +8,15 @@ A simple command line JAVA program to create and manage a personal Todo List.
 ## Testing framework
 * JUnit 5.6.2
 ## Setup
+Before running the app make sure you have the latest Gradle ([Installation instructions](https://gradle.org/install/)) and Java JDK ([Installation instructions](https://adoptopenjdk.net/releases.html?variant=openjdk15&jvmVariant=hotspot)) versions installed on your computer.
+
 To run this app
-- Clone this repository.
+- Clone this repository
+  
+- cd into cloned folder
 ##### Run the following command:
-``` gradle run --console=plain```
+```$ gradle run --console=plain```
+
 ## Basic features
 * Models a task with:
     * Name
