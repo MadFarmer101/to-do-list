@@ -36,7 +36,7 @@ public class ToDoList {
 
         toDoList.add(task);
 
-        System.out.println("Task is successfully added");
+        System.out.println("\nTask is successfully added!");
     }
 
     /**
@@ -51,7 +51,7 @@ public class ToDoList {
         String userInput = scanner.nextLine();
 
         for (Task task : toDoList) {
-            if (task.getName().equalsIgnoreCase(userInput))
+            if (task.getName().trim().equalsIgnoreCase(userInput))
                 return task;
         }
         System.err.println("You don't have a task with that name.");
@@ -95,7 +95,7 @@ public class ToDoList {
         String userProjectInput = scanner.nextLine();
 
         for (Task task : toDoList) {
-            if (task.getProject().equalsIgnoreCase(userProjectInput)) {
+            if (task.getProject().trim().equalsIgnoreCase(userProjectInput)) {
                 tasksUnderSameProject.add(task);
             }
         }
@@ -121,7 +121,7 @@ public class ToDoList {
         String usersDateInput = scanner.nextLine();
 
         for (Task task : toDoList) {
-            if (task.getDueDate().toString().equalsIgnoreCase(usersDateInput)) {
+            if (task.getDueDate().toString().trim().equalsIgnoreCase(usersDateInput)) {
                 tasksWithSameDueDate.add(task);
             }
         }
@@ -186,7 +186,7 @@ public class ToDoList {
                         System.out.println("\nTask's project is successfully changed");
                     }
                     case "3" -> {
-                        System.out.println("Please enter new due date:");
+                        System.out.println("Please enter new due date (YYYY-MM-DD):");
                         task.setDueDate(LocalDate.parse(newValue.nextLine()));
                         System.out.println("\nTask's Due Date is successfully changed");
                     }
